@@ -92,7 +92,7 @@ SOC-Lab-Portfolio/
 
 ## 👤 Author
 
-**[Your Full Name]**
+**ANZAR AHMED**
 Aspiring SOC Analyst | [Relevant Certifications, e.g. CompTIA Security+, CySA+]
 
 - 🔗 LinkedIn: [your-linkedin-url]
