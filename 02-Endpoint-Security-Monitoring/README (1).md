@@ -4,8 +4,6 @@
 ## Lab 1: Windows Persistence Techniques & Detection
 
 ![Category](https://img.shields.io/badge/Category-Endpoint%20Security-blue?style=for-the-badge&logo=windows&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
 ![Tools](https://img.shields.io/badge/Tools-Metasploit%20%7C%20Autoruns%20%7C%20PowerShell-critical?style=for-the-badge)
 
 *Part of the [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio) — hands-on Blue Team detection engineering*
