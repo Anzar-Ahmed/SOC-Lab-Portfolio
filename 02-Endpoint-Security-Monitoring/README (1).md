@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🛡️ Endpoint Security Monitoring
-## Lab 1: Windows Persistence Techniques & Detection
+##  Windows Persistence Techniques & Detection
 
 ![Category](https://img.shields.io/badge/Category-Endpoint%20Security-blue?style=for-the-badge&logo=windows&logoColor=white)
 ![Tools](https://img.shields.io/badge/Tools-Metasploit%20%7C%20Autoruns%20%7C%20PowerShell-critical?style=for-the-badge)
