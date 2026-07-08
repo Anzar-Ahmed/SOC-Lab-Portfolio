@@ -16,7 +16,7 @@
 To analyze raw email headers from suspicious/phishing samples using a text editor (Sublime Text) to identify sender spoofing, authentication mismatches (SPF/DKIM/DMARC), and Reply-To/Return-Path inconsistencies — without relying on automated header-analysis tools, in order to build strong manual analysis fundamentals.
 
 ## 🧰 Tools Used
-* **Sublime Text:** For viewing, manual parsing, and tracing raw `.eml` header sources (Received chain, Authentication-Results, Reply-To, and Return-Path fields).
+* **`Sublime Text`** — Utilized for raw source ingestion, isolation of mail routing headers, and manual parsing of authentication metrics.
 
 ---
 
@@ -24,33 +24,48 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 | # | Subject | Claimed Sender | SPF/DKIM/DMARC | Verdict | Key Red Flag |
 |---|---|---|---|---|---|
-| 1 | Your Bank Account has been blocked due to unusual activities | alerts@chase.com | SPF: Pass* / DKIM: Timeout / DMARC: Pass* | 🔴 Malicious | Reply-To & Return-Path point to an unrelated ProtonMail address, not Chase |
+| 1 | Your Bank Account has been blocked due to unusual activities | `alerts@chase.com` | SPF: Pass* / DKIM: Timeout / DMARC: Pass* | 🔴 Malicious | Reply-To & Return-Path point to an unrelated ProtonMail address, not Chase |
 | 2 | *(pending)* | | | | |
+| 3 | *(pending)* | | | | |
+| 4 | *(pending)* | | | | |
+| 5 | *(pending)* | | | | |
 
-> \* **Note on SPF/DMARC:** The "Pass" status is deceptive. It authenticates `protonmail.com` (the envelope sender), not the claimed `chase.com` domain visible to the user.
+> ⚠️ **Critical Alignment Note:** The `SPF/DMARC: Pass` status is highly deceptive. The authentication protocol successfully validated the envelope sender (`protonmail.com`), but failed to evaluate or align with the spoofed `From` domain (`chase.com`) presented to the victim.
 
 ---
 
-### Sample #1 — "Your Bank Account has been blocked due to unusual activities"
+### 📥 Sample #1 — "Your Bank Account has been blocked due to unusual activities"
 
-**Scenario:** Email impersonating Chase Bank, using urgency-based social engineering ("account blocked due to unusual activity") to pressure the recipient into taking action — a classic bank-alert phishing lure.
+#### 🔹 Scenario
+Email impersonating **Chase Bank**, leveraging an urgency-based social engineering lure (*"account blocked due to unusual activity"*) designed to induce panic and bypass logical scrutiny—a textbook banking credential harvesting vector.
 
-**Action Taken:**
-Opened the raw email header source in Sublime Text and manually analyzed the `Received` chain, `Authentication-Results`, `Reply-To`, and `Return-Path` fields to verify if the visible sender identity aligned with the actual sending infrastructure.
+#### 🔹 Action Taken
+The raw `.eml` payload was extracted and opened in **Sublime Text**. Performed manual line-by-line inspection tracking the network infrastructure hops via the `Received` chain, verified cryptographic validation markers within `Authentication-Results`, and cross-referenced routing targets inside `Reply-To` and `Return-Path` variables.
 
-**Main Finding (Phishing Indicators Identified):**
-* **Display vs Header Mismatch:** The visible **`From: alerts@chase.com`** header impersonates Chase Bank, but the **`Reply-To`** and **`Return-Path`** fields both point to an attacker-controlled address: `kellyellin426@proton.me`.
-* **Infrastructure Trace:** The `Received` chain maps back to **`mail-40140.protonmail.ch (185.70.40.140)`**, proving the email originated from ProtonMail's mail servers, not Chase/JPMorgan Chase infrastructure.
-* **Deceptive Authentication (DMARC/SPF Pass):** `Authentication-Results` shows `spf=pass` and `dmarc=pass`. However, granular inspection reveals `smtp.mailfrom=protonmail.com` and `header.d=protonmail.com`. The checks passed only because the attacker used a legitimate ProtonMail account to send the email—no validation was performed for `chase.com`.
-* **DKIM Failure:** The DKIM check returned `timeout (key query timeout)`, meaning no valid signature was verified for the actual sending domain.
+---
 
-**Analysis Verdict:** 🔴 **Confirmed Phishing** — Friendly-From spoofing of Chase Bank via ProtonMail infrastructure, with alternative routing headers (`Reply-To`/`Return-Path`) configured to harvest responses.
+### 🔍 Main Findings & Forensic Markers
 
-**Analyst Recommendations (SOC Playbook):** 
-In an enterprise environment, immediate remediation steps would include:
-1. Blocking the sending IP (`185.70.40.140`) and the external threat actor email (`kellyellin426@proton.me`) at the secure email gateway (SEG).
-2. Running a tenant-wide search/purge query to look for matching delivery patterns across all user mailboxes.
-3. Checking proxy logs for any outbound traffic to external links if the email contained a payload or URL.
+* **Display vs. Envelope Mismatch:** 
+  The mail client displays a legitimate-looking address: `From: alerts@chase.com`. However, the transactional delivery paths are explicitly routed to an attacker-controlled target: `Reply-To: kellyellin426@proton.me` and `Return-Path: kellyellin426@proton.me`.
+  
+* **Infrastructure Trace Routing:** 
+  Tracing the sequential `Received` boundaries verified that the final outbound node was `mail-40140.protonmail.ch (185.70.40.140)`. The message originated straight from ProtonMail's commercial servers, with zero interaction from actual Chase/JPMorgan routing facilities.
+
+* **Deceptive Protocol Spoofing:** 
+  While `Authentication-Results` flags an initial `spf=pass` and `dmarc=pass`, closer forensic inspection indicates the scope is explicitly bound to `smtp.mailfrom=protonmail.com` and `header.d=protonmail.com`. The validation passed strictly because the attacker used a legally registered ProtonMail asset. No cryptographic verification was performed for `chase.com`.
+
+* **DKIM Verification Timeout:** 
+  The signature validation failed with a `timeout (key query timeout)` status, indicating a complete breakdown of public-key lookup for the sender validation sequence.
+
+> **Analysis Verdict:** 🔴 **Confirmed Phishing** — High-confidence identification of Friendly-From spoofing mimicking Chase Bank infrastructure via legitimate ProtonMail nodes, structured with asymmetric reply targets to intercept inbound victim traffic.
+
+---
+
+#### 🛡️ Analyst Recommendations (SOC Playbook Triage)
+1. **Perimeter Mitigation:** Operationalize immediate blocks on the relay IP (`185.70.40.140`) and append the malicious external address (`kellyellin426@proton.me`) to the Secure Email Gateway (SEG) global blocklist.
+2. **Impact Assessment:** Execute a tenant-wide sweep and purge script across the mail environment to target identical string patterns or header metadata across other enterprise mailboxes.
+3. **Network Telemetry Audit:** Cross-reference internal proxy and DNS logs to verify if any endpoint reached out to external URLs if a hyperlink payload was integrated within the mail body.
 
 ---
 
@@ -59,14 +74,14 @@ In an enterprise environment, immediate remediation steps would include:
 To validate the manual analysis findings, the following structural logs and external OSINT source verifications were compiled as part of the investigation:
 
 #### 🧾 Raw Header Analysis (Sublime Text)
-The screenshot below shows the initial raw ingestion of the `.eml` file within the text editor, showcasing the full unparsed text block prior to tracing.
+*The unparsed header block ingested into the text workspace prior to component isolation:*
 
 ![Raw Header View](screenshots/header-full.png)
 
 ---
 
 #### 🔍 Highlighted Key Findings & Discrepancies
-This annotated view isolates the critical insertion points of the malicious headers—specifically highlighting the **Friendly-From** impersonation (`alerts@chase.com`) vs. the actual routing indicators (`Reply-To` and `Return-Path` mapping back to ProtonMail).
+*Annotated breakdown showcasing the absolute divergence between the spoofed display domain and the structural mail parameters:*
 
 ![Highlighted Header](screenshots/header-highlighted.png)
 
@@ -75,12 +90,12 @@ This annotated view isolates the critical insertion points of the malicious head
 #### 🌐 External OSINT Verification
 
 **MXToolbox (Header Analysis & IP Reputation Check)**
-The header source was cross-verified through MXToolbox to validate the sending infrastructure's reputation and analyze the delivery hops. The results confirmed that the relaying IP does not belong to the authorized Chase Bank network blocks.
+*Header logs validated via MXToolbox to evaluate delivery hops and verify infrastructure reputation. The results definitively prove the sending node is dissociated from actual Chase network ranges:*
 
 ![MXToolbox Result](screenshots/mxtoolbox.png)
 
 **WHOIS Lookup (Domain Security Profile)**
-A WHOIS look-up was executed against the unauthorized infrastructure IP (`185.70.40.140`) to document the ASN ownership and infrastructure history, verifying its explicit association with ProtonMail's Switzerland-based assets.
+*A targeted WHOIS request mapped against `185.70.40.140` to formalize ASN assignment, mapping ownership records directly to Swiss assets managed by ProtonMail:*
 
 ![WHOIS Result](screenshots/whois.png)
 
