@@ -1,35 +1,64 @@
 # 🎣 Phishing Analysis Lab
 
+<div align="center">
+
+![Category](https://img.shields.io/badge/Category-Blue%20Team%20%2F%20SOC-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=for-the-badge)
+![Framework](https://img.shields.io/badge/Framework-MITRE%20ATT%26CK-red?style=for-the-badge)
+
+</div>
+
+---
+
 ## 📖 Overview
+This lab covers end-to-end phishing investigations using real-world SOC triage techniques. The primary objective is to break down suspicious emails layer-by-layer to uncover malicious infrastructure, evaluate social engineering tactics, and safely extract actionable intelligence without compromising the host environment.
 
-This lab focuses on analyzing phishing emails using real-world investigation techniques. The objective is to identify malicious indicators such as spoofed domains, suspicious URLs, malicious attachments, and social engineering tactics.
+The investigation transitions from basic structural inspection (headers) down to advanced behavior analysis (dynamic malware execution).
 
-Each section represents a different stage of phishing analysis, including header inspection, content analysis, URL investigation, and attachment/maldoc analysis.
+---
 
-## 📂 Sections
+## 🎯 Core Objectives
+* **Header Triage:** Parse raw mail source to validate SPF, DKIM, and DMARC alignment and map delivery routing.
+* **Content Deconstruction:** Identify psychological triggers, urgency-based lures, and obfuscated call-to-actions.
+* **Infrastructure Tracking:** Investigate suspicious domains and network reputation using open-source intelligence (OSINT).
+* **Defensive Threat Hunting:** Safely detonate, analyze, and extract Indicators of Compromise (IOCs) from malicious artifacts.
 
-* [Email Header Analysis](./01-Email-Header-Analysis/)
-* [Email Content Analysis](./02-Email-Content-Analysis/)
-* [URL Analysis](./03-URL-Analysis/)
-* [Email Attachment Analysis](./04-Email-Attachment-Analysis/)
-* [Maldoc Analysis](./05-Maldoc-Analysis/)
+---
 
-## 🎯 Objectives
+## 📂 Lab Structure & Roadmap
 
-* Analyze phishing email headers (SPF, DKIM, DMARC)
-* Identify social engineering techniques in email content
-* Investigate URLs using threat intelligence tools
-* Analyze attachments and malicious documents
-* Extract Indicators of Compromise (IOCs)
+| Module | Section | Description | Status |
+| :--- | :--- | :--- | :--- |
+| **01** | [📁 Email Header Analysis](./01-Email-Header-Analysis/) | Manual header parsing, routing tracing, and authentication verification. | 🟢 Completed (Sample 1) |
+| **02** | [📁 Email Content Analysis](./02-Email-Content-Analysis/) | Body text analysis, body language triggers, and hidden HTML artifact tracking. | 🟡 Pending |
+| **03** | [📁 URL Analysis](./03-URL-Analysis/) | Reputation checking, redirection mapping, and scanning malicious links safely. | 🟡 Pending |
+| **04** | [📁 Email Attachment Analysis](./04-Email-Attachment-Analysis/) | Static inspection of suspicious extensions and extraction of raw file metadata. | 🟡 Pending |
+| **05** | [📁 Maldoc Analysis](./05-Maldoc-Analysis/) | Macros inspection, document obfuscation triage, and dynamic analysis in sandboxes. | 🟡 Pending |
 
-## 🛠️ Tools Used
+---
 
-* MXToolbox
-* VirusTotal
-* URLScan.io
-* Any.Run
-* Hybrid Analysis
+## 🧰 Threat Intelligence & Investigative Stack
 
-## ✅ Status
+The following toolset is utilized throughout the progression of this lab:
 
-🟡 In Progress
+| Category | Tools Deployed | Purpose |
+| :--- | :--- | :--- |
+| **Mail Triage** | Sublime Text / VS Code | Manual raw source parsing |
+| **OSINT & IP Rep** | VirusTotal, MXToolbox | Domain authentication & reputation checking |
+| **URL Diagnostics** | URLScan.io | Safe link rendering and redirection tracking |
+| **Dynamic Sandbox** | Any.Run, Hybrid Analysis | Malware detonation & behavioral sequence logging |
+
+---
+
+## 🛡️ Applied Threat Framework
+Investigations within this lab are aligned with the **MITRE ATT&CK** matrix, focusing specifically on the **Initial Access (TA0001)** tactic via **Phishing (T1566)** sub-techniques.
+
+---
+
+<div align="center">
+
+### 📂 Navigation
+
+[⬅️ Back to Main SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)
+
+</div>
