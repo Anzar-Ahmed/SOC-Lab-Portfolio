@@ -42,6 +42,59 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 Opened the raw email header source in Sublime Text and manually analyzed the `Received` chain, `Authentication-Results`, `Reply-To`, and `Return-Path` fields to verify if the visible sender identity aligned with the actual sending infrastructure.
 
 **Screenshots:**
-```markdown
 ![Raw header part 1 - Received chain and Authentication-Results](screenshots/01-header-sample1-part1.png)
 ![Raw header part 2 - From, Reply-To, Return-Path](screenshots/01-header-sample1-part2.png)
+
+**Main Finding (Phishing Indicators Identified):**
+* **Display vs Header Mismatch:** The visible **`From: alerts@chase.com`** header impersonates Chase Bank, but the **`Reply-To`** and **`Return-Path`** fields both point to an attacker-controlled address: `kellyellin426@proton.me`.
+* **Infrastructure Trace:** The `Received` chain maps back to **`mail-40140.protonmail.ch (185.70.40.140)`**, proving the email originated from ProtonMail's mail servers, not Chase/JPMorgan Chase infrastructure.
+* **Deceptive Authentication (DMARC/SPF Pass):** `Authentication-Results` shows `spf=pass` and `dmarc=pass`. However, granular inspection reveals `smtp.mailfrom=protonmail.com` and `header.d=protonmail.com`. The checks passed only because the attacker used a legitimate ProtonMail account to send the email—no validation was performed for `chase.com`.
+* **DKIM Failure:** The DKIM check returned `timeout (key query timeout)`, meaning no valid signature was verified for the actual sending domain.
+
+**Analysis Verdict:** 🔴 **Confirmed Phishing** — Friendly-From spoofing of Chase Bank via ProtonMail infrastructure, with alternative routing headers (`Reply-To`/`Return-Path`) configured to harvest responses.
+
+**Analyst Recommendations (SOC Playbook):** 
+In an enterprise environment, immediate remediation steps would include:
+1. Blocking the sending IP (`185.70.40.140`) and the external threat actor email (`kellyellin426@proton.me`) at the secure email gateway (SEG).
+2. Running a tenant-wide search/purge query to look for matching delivery patterns across all user mailboxes.
+3. Checking proxy logs for any outbound traffic to external links if the email contained a payload or URL.
+
+---
+
+## 🚩 IOC Findings
+
+| Indicator | Type | Description |
+|---|---|---|
+| `alerts@chase.com` | Spoofed Display Sender | Forged "From" address impersonating Chase Bank |
+| `kellyellin426@proton.me` | Reply-To / Return-Path | Actual attacker-controlled mailbox behind the spoofed display name |
+| `185.70.40.140` | Sending IP | ProtonMail infrastructure IP (`mail-40140.protonmail.ch`) used to relay the phishing email |
+| `protonmail.com` | Authenticated Envelope Domain | Domain actually validated by SPF/DMARC — mismatched against the claimed `chase.com` sender |
+
+---
+
+## 🗺️ MITRE ATT&CK Mapping
+
+| Technique ID | Technique Name | Observed Activity |
+|---|---|---|
+| [T1566.002](https://attack.mitre.org/techniques/T1566/002/) | Phishing: Spearphishing Link | Bank-alert lure designed to drive victim to a malicious link/action |
+| [T1036.005](https://attack.mitre.org/techniques/T1036/005/) | Masquerading: Match Legitimate Name or Location | "From" display forged to impersonate Chase Bank |
+
+---
+
+## ✅ Conclusion
+*(Update once all 5 samples are complete — summarize the common patterns observed across samples: e.g. how many relied on Friendly-From spoofing vs. compromised legitimate accounts, most common authentication failure type, etc.)*
+
+## 💡 Key Learning
+* **"SPF: Pass" does not guarantee sender legitimacy** — It only validates the envelope sender domain (`smtp.mailfrom`), which can easily be different from the spoofed `From` address a user actually sees in their mail client. Always verify domain alignment.
+* **Reply-To and Return-Path verification** are highly reliable indicators for spotting Friendly-From spoofing quickly without over-reliance on external parsing automation.
+* Analyzing headers manually builds technical muscle memory for identifying edge-case header anomalies that automated security controls or parsers might occasionally gloss over.
+
+---
+
+<div align="center">
+
+### 📂 Navigate
+
+[⬅️ Back to Phishing Analysis Overview](../) &nbsp;|&nbsp; [Email Content Analysis ➡️](../02-Email-Content-Analysis)
+
+</div>
