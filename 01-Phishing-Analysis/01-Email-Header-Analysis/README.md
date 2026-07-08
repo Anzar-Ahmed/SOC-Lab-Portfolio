@@ -26,9 +26,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 |---|---|---|---|---|---|
 | 1 | Your Bank Account has been blocked due to unusual activities | alerts@chase.com | SPF: Pass* / DKIM: Timeout / DMARC: Pass* | 🔴 Malicious | Reply-To & Return-Path point to an unrelated ProtonMail address, not Chase |
 | 2 | *(pending)* | | | | |
-| 3 | *(pending)* | | | | |
-| 4 | *(pending)* | | | | |
-| 5 | *(pending)* | | | | |
 
 > \* **Note on SPF/DMARC:** The "Pass" status is deceptive. It authenticates `protonmail.com` (the envelope sender), not the claimed `chase.com` domain visible to the user.
 
