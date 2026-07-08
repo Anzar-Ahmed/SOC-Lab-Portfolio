@@ -41,10 +41,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 **Action Taken:**
 Opened the raw email header source in Sublime Text and manually analyzed the `Received` chain, `Authentication-Results`, `Reply-To`, and `Return-Path` fields to verify if the visible sender identity aligned with the actual sending infrastructure.
 
-**Screenshots:**
-![Raw header part 1 - Received chain and Authentication-Results](screenshots/01-header-sample1-part1.png)
-![Raw header part 2 - From, Reply-To, Return-Path](screenshots/01-header-sample1-part2.png)
-
 **Main Finding (Phishing Indicators Identified):**
 * **Display vs Header Mismatch:** The visible **`From: alerts@chase.com`** header impersonates Chase Bank, but the **`Reply-To`** and **`Return-Path`** fields both point to an attacker-controlled address: `kellyellin426@proton.me`.
 * **Infrastructure Trace:** The `Received` chain maps back to **`mail-40140.protonmail.ch (185.70.40.140)`**, proving the email originated from ProtonMail's mail servers, not Chase/JPMorgan Chase infrastructure.
@@ -58,6 +54,38 @@ In an enterprise environment, immediate remediation steps would include:
 1. Blocking the sending IP (`185.70.40.140`) and the external threat actor email (`kellyellin426@proton.me`) at the secure email gateway (SEG).
 2. Running a tenant-wide search/purge query to look for matching delivery patterns across all user mailboxes.
 3. Checking proxy logs for any outbound traffic to external links if the email contained a payload or URL.
+
+---
+
+### 📸 Evidence & Verification
+
+To validate the manual analysis findings, the following structural logs and external OSINT source verifications were compiled as part of the investigation:
+
+#### 🧾 Raw Header Analysis (Sublime Text)
+The screenshot below shows the initial raw ingestion of the `.eml` file within the text editor, showcasing the full unparsed text block prior to tracing.
+
+![Raw Header View](screenshots/header-full.png)
+
+---
+
+#### 🔍 Highlighted Key Findings & Discrepancies
+This annotated view isolates the critical insertion points of the malicious headers—specifically highlighting the **Friendly-From** impersonation (`alerts@chase.com`) vs. the actual routing indicators (`Reply-To` and `Return-Path` mapping back to ProtonMail).
+
+![Highlighted Header](screenshots/header-highlighted.png)
+
+---
+
+#### 🌐 External OSINT Verification
+
+**MXToolbox (Header Analysis & IP Reputation Check)**
+The header source was cross-verified through MXToolbox to validate the sending infrastructure's reputation and analyze the delivery hops. The results confirmed that the relaying IP does not belong to the authorized Chase Bank network blocks.
+
+![MXToolbox Result](screenshots/mxtoolbox.png)
+
+**WHOIS Lookup (Domain Security Profile)**
+A WHOIS look-up was executed against the unauthorized infrastructure IP (`185.70.40.140`) to document the ASN ownership and infrastructure history, verifying its explicit association with ProtonMail's Switzerland-based assets.
+
+![WHOIS Result](screenshots/whois.png)
 
 ---
 
