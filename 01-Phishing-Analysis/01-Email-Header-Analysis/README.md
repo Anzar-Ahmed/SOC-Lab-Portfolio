@@ -81,21 +81,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 ---
 
-## 📸 Artifacts & Validation Logs
-
-#### 🧾 Structural Logging (sample-01)
-* **Raw State View:** Full raw header text block ingested into Sublime Text before sorting analysis.
-  ![Raw Header View](./header-full.png)
-* **Visual Isolation:** Mapping the domain discrepancies between the Friendly-From banner and the routing targets.
-  ![Highlighted Header](./header-highlighted.png)
-
-#### 🌐 Reputation & Alignment Verifications
-* **Network Hop Diagnostics (sample-01):** MXToolbox delivery tracking confirming routing paths are decoupled from real assets.
-  ![MXToolbox Result](./mxtoolbox.png)
-* **Infrastructure Profile (sample-01):** Targeted WHOIS mapping linking the origin IP address to foreign network registries.
-  ![WHOIS Result](./Whois.png)
-* **Cryptographic Alignment Audit (sample-02):** Cryptographic verification report proving hard alignment failure between sender and signature domains.
-  ![Sample 2 Alignment Failure](./sample2-header-auth.png)
 
 ---
 
