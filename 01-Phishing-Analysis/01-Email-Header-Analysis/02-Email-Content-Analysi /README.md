@@ -4,7 +4,7 @@
 
 ![Category](https://img.shields.io/badge/Category-Phishing%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
-![Samples Analyzed](https://img.shields.io/badge/Samples%20Analyzed-2%2F2-success?style=for-the-badge)
+![Samples Analyzed](https://img.shields.io/badge/Samples%20Analyzed-3%2F3-success?style=for-the-badge)
 
 *Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
 
@@ -108,10 +108,51 @@ This sample shows how phishing is changing. While AI helped the attacker fix the
 
 ---
 
+### 📁 sample-03: Amazon Lure (Perfect Content Wrapper vs Header Reality)
+
+<details>
+<summary><b>Click to expand Phishing Indicators Breakdown</b></summary>
+<br>
+
+### 🔍 Phishing Indicators Breakdown
+
+#### 🟢 1. Flawless Visual Content & Formatting
+* **Observation:** The email design is perfectly clean. It includes the official **Amazon logo**, accurate spacing, high-quality layout, and a completely professional generic greeting: `"Dear Amazon Customer,"`.
+* **The Threat Lure:** It simulates a strict notification claiming an order was canceled due to fake activity and that the account is suspended.
+
+#### ⚠️ 2. The Danger of Timing & Context (The Real-World Impact)
+* **The Scenario:** Imagine a real user who actually ordered a product from Amazon just a few hours ago. 
+* **The Reaction:** If they receive this email shortly after making a purchase, the timing matches their real-world actions perfectly. Because there are **zero spelling or design mistakes** in the body text, the user will easily believe this is a genuine alert about their recent order. 
+* **The Result:** Instead of treating it with skepticism, they will panic and perform **direct actions immediately** (like clicking the link or copying the security code), completely falling into the attacker's trap.
+
+#### 🟥 3. The Header Breakdown (The Real Identity)
+* **Claimed Display Name:** `Amazon Help Center`
+* **Actual Hidden Sender Address:** `amz@fareast.com.sg`
+* **Verdict:** ❌ **Absolute Domain Spoofing.** While the content layer is perfectly crafted to exploit real-world situations, the email header instantly exposes the scam. Amazon will never distribute official corporate account actions or security flags from a random, unrelated domain registered in Singapore (`.com.sg`).
+
+#### 🚨 4. High-Urgency Hook
+* **Subject Line:** `[ACTION REQUEST] You have been red flagged for violating our terms`
+* **The Strategy:** Using aggressive phrases like `[ACTION REQUEST]`, `red flagged`, and `violating our terms` creates maximum panic, hoping the user will bypass critical thinking out of fear.
+
+#### 🎯 5. Deceptive Call-to-Action
+* **Target Link:** `"Fraudulent Activity Report"` link along with a fake validation code (`EWK1DOOSJ9RE`).
+* **Verdict:** ❌ Designed to push the victim into an urgent credential harvesting login sequence.
+
+---
+
+### 🧠 Summary & Verdict
+This case is a perfect example of why **Content Analysis alone is never enough**. If an attacker's timing aligns with a user's real-world activity, a clean layout will easily fool them. Defenders and users must always check the **Email Header** data to catch the domain mismatch behind the design shell.
+
+> ➡️ **Final Verdict:** 🔴 **Confirmed Phishing Email**
+
+</details>
+
+---
+
 ## 💡 Key Content Analysis Takeaways
-* **AI Improves the Shell, But Mistakes Happen:** Attackers use AI to fix obvious errors, but manual copy-pasting still introduces spelling mistakes (like `assistence`) that reveal the scam.
-* **Watch Out for Subtle Grammar:** Small errors like `"recently update"` or wrong apostrophes (`NFT's`) are major warning signs in official corporate emails.
-* **Urgency is Always Suspicious:** No matter how clean or professional an email looks, if it threatens to suspend your account unless you act immediately, it is almost certainly phishing.
+* **Content Can Lie, Headers Don't:** Attackers can copy corporate layouts and logos perfectly (like the Amazon sample) to look legitimate. Never trust an email based on appearance alone; always verify the actual sender address in the header.
+* **Context & Timing Make Phishing Dangerous:** If a user recently interacted with a service (like buying an item on Amazon), they are highly likely to trust a fake email that matches that event. This is why automated verification is essential.
+* **AI Improves the Shell, But Mistakes Happen:** Attackers use AI to fix obvious spelling and formatting flaws, but minor manual copy-pasting or editing still leaves errors behind (like `assistence` or `recently update`).
 
 ---
 
