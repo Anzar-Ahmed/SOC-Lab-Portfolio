@@ -29,7 +29,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 | **01** | Your Bank Account has been blocked due to unusual activities   | `alerts@chase.com`       | SPF: Pass* / DMARC: Pass* / DKIM: Timeout | 🔴 **Malicious** |
 | **02** | Rachel, cosmicfusiontech.com will expire in 7 days - renew now | `renewals@namecheap.com` | SPF: Pass / DMARC: Fail* / DKIM: Fail* | 🔴 **Malicious** |
 
-> ⚠️ **Important Security Note:** In both cases, basic gateway filters failed to block these emails because the attackers used trusted platforms (ProtonMail & SendGrid). The phishing attempts were only caught by performing a manual **Domain Alignment Check**.
 
 ---
 
