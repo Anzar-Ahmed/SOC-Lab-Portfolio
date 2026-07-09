@@ -16,6 +16,8 @@
 
 To analyze raw email headers from suspicious/phishing samples using a text editor (Sublime Text) to identify sender spoofing, authentication mismatches (SPF/DKIM/DMARC), and Reply-To/Return-Path inconsistencies — without relying on automated header-analysis tools, in order to build strong manual analysis fundamentals.
 
+---
+
 ### 🧰 Tools Deployed
 
 * **`Sublime Text`** — Used to open raw email source codes and manually check routing paths.
@@ -51,14 +53,14 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 * **Fake Sender Address:** The user sees `From: alerts@chase.com`, but the hidden headers show that replies are actually going to `Reply-To: kellyellin426@proton.me` and `Return-Path: kellyellin426@proton.me`.
 * **Real Source Tracked:** Traced the delivery trail back to a ProtonMail server IP: `185.70.40.140`. Real Chase Bank servers had nothing to do with this email.
-* **Deceptive SPF/DMARC Pass:** The security status shows `spf=pass`. However, checking deeper shows it only passed because the attacker authenticated their *own* personal ProtonMail account (`smtp.mailfrom=protonmail.com`). It never verified or matched the visible `chase.com` domain.
+* **Deceptive SPF/DMARC Pass:** The security status shows `spf=pass`. However, it passed only for ProtonMail (`smtp.mailfrom=protonmail.com`), not for `chase.com`, indicating domain misalignment.
 
 > **Verdict:** 🔴 **Confirmed Phishing**
 
 #### 🛡️ Threat Mitigation (SOC Action Plan)
 
-1. Blocked the sender IP `185.70.40.140` and the malicious email address `kellyellin426@proton.me` at the email gateway.
-2. Ran an organization-wide search to find and delete this exact same email from all other user mailboxes.
+1. Blocked the sender IP `185.70.40.140` and the malicious email address `kellyellin426@proton.me`.
+2. Removed the email from all user mailboxes.
 
 </details>
 
@@ -73,20 +75,20 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 #### 📋 Profile & Triage
 
 * **Scenario:** A domain expiration warning pretending to be Namecheap, urging the user to click a "Renew Now" link.
-* **Methodology:** Checked the raw header layout in Sublime Text and validated the security keys using `MXToolbox`.
+* **Methodology:** Analyzed raw headers and validated SPF/DKIM/DMARC using `MXToolbox`.
 
 #### 🔍 Forensic Analysis (How I caught it)
 
-* **DKIM Signature Mismatch:** The email has a valid signature, but it belongs to `d=sendgrid.info` instead of matching the visible sender domain `namecheap.com`. This is a major domain misalignment flag.
-* **Bulk Mailer Abuse:** The attacker registered a real account on SendGrid (a bulk emailing service) and used high-reputation servers to send phishing emails that easily bypass basic security checks.
-* **DMARC Failure:** Because the background sender domain (SendGrid) does not align with the visible brand (Namecheap), the overall security logic triggers a hard DMARC failure.
+* **DKIM Signature Mismatch:** DKIM signed by `sendgrid.info`, not `namecheap.com`.
+* **Bulk Mailer Abuse:** Attacker used SendGrid (legitimate service) to bypass filters.
+* **DMARC Failure:** Domain misalignment caused authentication failure.
 
 > **Verdict:** 🔴 **Confirmed Phishing**
 
 #### 🛡️ Threat Mitigation (SOC Action Plan)
 
-1. Documented the unique SendGrid header tracking keys and reported the compromised account to SendGrid's abuse team to shut it down.
-2. Checked network logs to ensure no local users clicked on the malicious "Renew Now" link.
+1. Reported the abuse to SendGrid.
+2. Verified that no users interacted with the phishing link.
 
 </details>
 
@@ -96,47 +98,54 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 #### 🧾 Structural Logging (Case 01)
 
-* **Raw State:** Complete string extraction prior to active sorting steps.
-  ![Raw Header View](screenshots/header-full.png)
-* **Annotated Discrepancies:** Isolation of the mismatched delivery targets.
-  ![Highlighted Header](screenshots/header-highlighted.png)
+* **Raw Header View:**
+  ![Raw Header](./sample-01/header-full.png)
+
+* **Highlighted Analysis:**
+  ![Highlighted Header](./sample-01/header-highlighted.png)
+
+---
 
 #### 🌐 Reputation & Diagnostic Checks
 
-* **Network Tracing (Case 01):** Verification verifying the proxy source is distinct from authorized assets.
-  ![MXToolbox Result](screenshots/mxtoolbox.png)
-  ![WHOIS Result](screenshots/whois.png)
-* **Alignment Validation (Case 02):** MXToolbox report confirming the absolute divergence of the signature profile.
-  ![Sample 2 Alignment Failure](screenshots/sample2-header-auth.png)
+* **WHOIS Lookup:**
+  ![WHOIS](./sample-01/Whois.png)
+
+* **MXToolbox Analysis:**
+  ![MXToolbox](./sample-01/mxtoolbox.png)
+
+* **Alignment Failure (Case 02):**
+  ![Sample 2](./sample-01/sample2-header-auth.png)
 
 ---
 
-## 🚩 Compiled Indicators of Compromise (IOCs)
+## 🚩 Indicators of Compromise (IOCs)
 
-| Indicator Target          | Type             | Contextual Function                                        | Association |
-| ------------------------- | ---------------- | ---------------------------------------------------------- | ----------- |
-| `alerts@chase.com`        | Spoofed String   | Fake display email impersonating a bank.                   | Case 01     |
-| `kellyellin426@proton.me` | Exfiltration Box | Attacker's inbox catching victim replies.                  | Case 01     |
-| `185.70.40.140`           | Threat Relay IP  | ProtonMail server IP used to launch the attack.            | Case 01     |
-| `renewals@namecheap.com`  | Spoofed Identity | Fake identity used to target domain administrators.        | Case 02     |
-| `sendgrid.info`           | Hijacked Domain  | The legitimate email relay service abused by the attacker. | Case 02     |
+| Indicator                                                 | Type           | Description        |
+| --------------------------------------------------------- | -------------- | ------------------ |
+| [alerts@chase.com](mailto:alerts@chase.com)               | Spoofed Email  | Fake bank sender   |
+| [kellyellin426@proton.me](mailto:kellyellin426@proton.me) | Attacker Email | Reply-To address   |
+| 185.70.40.140                                             | IP Address     | ProtonMail source  |
+| [renewals@namecheap.com](mailto:renewals@namecheap.com)   | Spoofed Email  | Fake renewal alert |
+| sendgrid.info                                             | Service Abuse  | DKIM domain        |
 
 ---
 
-## 🗺️ MITRE ATT&CK Tracking
+## 🗺️ MITRE ATT&CK Mapping
 
-| Identification                                              | Structural Name                     | Application Details                                                             |
-| ----------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------- |
-| [T1566.002](https://attack.mitre.org/techniques/T1566/002/) | Phishing: Spearphishing Link        | Using urgency context to trick a user into clicking a malicious link.           |
-| [T1036.005](https://attack.mitre.org/techniques/T1036/005/) | Masquerading: Match Legitimate Name | Forging the visible sender name to look exactly like a trusted corporate brand. |
+| Technique | Description        |
+| --------- | ------------------ |
+| T1566.002 | Spearphishing Link |
+| T1036.005 | Masquerading       |
 
 ---
 
 ## 💡 Key Learning Points
 
-* **Alignment is Everything:** A green "SPF: Pass" means nothing if the backend domain doesn't match the actual `From` address the user sees on their screen.
-* **Attackers Love Legitimate Cloud Platforms:** Attackers heavily abuse services like SendGrid and ProtonMail because security filters trust their IP addresses by default. Blue teams must look at *alignment*, not just baseline trust.
-* **Check Reply-To Fields First:** Looking closely at the `Reply-To` and `Return-Path` fields is one of the fastest ways to catch identity spoofing without needing heavy external tools.
+* SPF pass does **not guarantee legitimacy**
+* Domain alignment is critical
+* Reply-To mismatch is a strong indicator
+* Trusted services can be abused for phishing
 
 ---
 
@@ -144,6 +153,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 ### 📂 Navigate
 
-[⬅️ Back to Phishing Analysis Overview](../)  |  [Email Content Analysis ➡️](../02-Email-Content-Analysis)
+[⬅️ Back to Phishing Analysis](../) | [Email Content Analysis ➡️](../02-Email-Content-Analysis)
 
 </div>
