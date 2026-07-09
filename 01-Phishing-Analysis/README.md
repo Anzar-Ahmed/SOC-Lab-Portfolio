@@ -93,26 +93,6 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 ---
 ## 📸 Artifacts & Validation Logs
 
-#### 🧾 Structural Logging (Case 01)
-
-* **Raw State:** Complete string extraction prior to active sorting steps.
-  ![Raw Header View](sample-01/header-full.png)
-
-* **Annotated Discrepancies:** Isolation of the mismatched delivery targets.
-  ![Highlighted Header](sample-01/header-highlighted.png)
-
----
-
-#### 🌐 Reputation & Diagnostic Checks
-
-* **Network Tracing (Case 01):** Verification that the proxy source is distinct from authorized assets.
-  ![WHOIS Result](sample-01/whois.png)
-
-* **MXToolbox Result (Case 01):** Email header diagnostic analysis.
-  ![MXToolbox Result](sample-01/mxtoolbox.png)
-
-* **Alignment Validation (Case 02):** MXToolbox report confirming divergence of authentication profile.
-  ![Sample 2 Alignment Failure](sample-01/sample2-header-auth.png)
 
 ---
 
