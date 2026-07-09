@@ -26,9 +26,7 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 |---|---|---|---|---|---|
 | 1 | Your Bank Account has been blocked due to unusual activities | `alerts@chase.com` | SPF: Pass* / DKIM: Timeout / DMARC: Pass* | 🔴 Malicious | Friendly-From spoofing; routing addresses lead to a personal ProtonMail box. |
 | 2 | Rachel, cosmicfusiontech.com will expire in 7 days - renew now | `renewals@namecheap.com` | SPF: Pass / DKIM: Pass / DMARC: Pass | 🟢 Legitimate | Full protocol alignment to `namecheap.com` domain via authorized SendGrid relays. |
-| 3 | *(pending)* | | | | |
-| 4 | *(pending)* | | | | |
-| 5 | *(pending)* | | | | |
+
 
 > ⚠️ **Critical Alignment Note:** In Sample 1, `SPF/DMARC: Pass` is a deceptive indicator. The protocol verified the envelope sender domain (`protonmail.com`), but completely lacked **alignment** with the visible header domain (`chase.com`).
 
