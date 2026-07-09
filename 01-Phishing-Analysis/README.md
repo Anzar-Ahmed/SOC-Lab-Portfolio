@@ -18,8 +18,9 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 ### 🧰 Tools Deployed
 
-* **`Sublime Text`** — Used to open raw email source codes and manually check routing paths.
-* **`MXToolbox`** — Used to verify if email security protocols (SPF/DKIM/DMARC) are aligned with the visible sender.
+* **`Sublime Text`** — Used to open raw email source codes and manually inspect routing paths and header structure.
+* **`MXToolbox`** — Used to verify email authentication protocols (SPF, DKIM, DMARC) and analyze header integrity.
+* **`WHOIS Lookup`** — Used to investigate domain ownership, registration details, and verify the legitimacy of the sender domain.
 
 ---
 
@@ -36,7 +37,7 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 ## 🔬 Triage Walkthroughs
 
-### 📁 Case 01: Chase Bank Impersonation (Friendly-From Spoofing)
+### 📁 sample-01: Chase Bank Impersonation (Friendly-From Spoofing)
 
 <details>
 <summary><b>Click to expand Case Investigation Details</b></summary>
@@ -64,7 +65,7 @@ To analyze raw email headers from suspicious/phishing samples using a text edito
 
 ---
 
-### 📁 Case 02: Namecheap Lure (Advanced ESP Cloud Abuse)
+### 📁 sample-02: Namecheap Lure (Advanced ESP Cloud Abuse)
 
 <details>
 <summary><b>Click to expand Case Investigation Details</b></summary>
