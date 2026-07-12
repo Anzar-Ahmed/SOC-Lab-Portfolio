@@ -31,30 +31,38 @@ To safely extract, defang, and inspect hidden hyperlinks embedded within suspici
 
 ---
 
-## 🔬 Technical Extraction Walkthroughs
+## 🔬 Technical Extraction & Validation Walkthroughs
 
-### 📁 sample-01: Chase Bank Lure (Manual Extraction & Triage)
+### 📁 Artifact 01: sample1.eml Analysis (Manual Extraction)
 
-Click to expand URL Analysis Breakdown
+We processed the raw email file through three different verification steps to isolate and evaluate the embedded links.
 
 <details>
-<summary><b>🔍 URL Analysis Breakdown</b></summary>
+<summary><b>Click to expand sample1.eml Analysis Breakdown</b></summary>
 <br>
 
-### 🛠️ 1. Raw Code Inspection (Source Verification)
+### 🛠️ Step 1: Raw Code Inspection (Source Verification)
+By opening the email file inside a text editor and searching for standard HTML hyperlink elements (`<a href=...`), we isolated the exact button construction:
 * **Button Label Text:** `Reactivate Your Account`
 * **Target Hyperlink:** `https://dsgo[.]to/CQECQECnpqY3NDSGtODt9ft2qtxzXGUveTV5fRYmTYAZsQ...`
 * **Analyst Note:** The body text tells the user their bank account is blocked, but the underlying anchor tag forces their browser to visit an unknown domain (`dsgo.to`) instead of an official banking server.
 
-### ⚙️ 2. Automated Parsing via Python (`eioc.py`)
+---
+
+### ⚙️ Step 2: Automated Parsing via Python (`eioc.py`)
+Running our dedicated command-line utility (`python3 eioc.py ../03_URL_Analysis/sample1.eml`) extracted the essential Indicators of Compromise (IOCs) rapidly:
 * **Claimed Display Sender:** `alerts@chase.com`
 * **Actual Return-Path:** `kellyellin426@proton.me`
 * **Extracted Target URL:** `hxxps[://]dsgo[.]to/...`
-* **Analyst Note:** The utility clearly captures the spoofing mismatch. The content pretends to be a critical notification from Chase Bank, but the internal links route directly to the external `dsgo.to` domain.
+* **Analyst Note:** The utility clearly captures the spoofing mismatch. The content pretends to be a critical notification from **Chase Bank**, but the internal links route directly to the external `dsgo.to` domain.
 
-### 🧪 3. CyberChef Extraction and Defanging
-* **The Recipe:** Processed the raw email data using a three-stage workflow: *From Quoted-Printable* ➡️ *Extract URLs* ➡️ *Defang URL*.
-* **The Goal:** Disables the links by changing `https://` to `hxxps[://]` to ensure absolute safety during documentation and reporting, preventing accidental clicks.
+---
+
+### 🧪 Step 3: CyberChef Extraction and Defanging
+To ensure absolute safety during documentation and reporting, the raw data was processed in CyberChef using a three-stage recipe:
+1. **From Quoted-Printable:** Decodes the raw body encoding.
+2. **Extract URLs:** Automatically identifies all hidden web links.
+3. **Defang URL:** Disables the links by changing `https://` to `hxxps[://]` and adding brackets to dots (`[.]`), preventing accidental execution.
 
 #### 📋 Extracted & Defanged IOCs:
 ```text
