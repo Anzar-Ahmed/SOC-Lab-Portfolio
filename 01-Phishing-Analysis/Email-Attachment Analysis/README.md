@@ -9,7 +9,6 @@
 
 ---
 
-
 ### 🎯 Objective
 To safely triage a suspicious email, isolate its payload, dynamically extract raw binary data from MIME streams inside a controlled Linux sandbox, and cross-examine cryptographic signatures against global threat intelligence to confirm malware delivery.
 
@@ -70,21 +69,72 @@ To avoid risky interactive extraction on a live host machine, `emldump.py` was u
 # Analyze the EML file structure to locate the payload stream
 python3 ../Tools/emldump.py sample1.eml
 
-🐚 Linux Console Extraction Proof:⚙️ Step 3: Metadata & IOC Extraction using eioc.pyFollowing the successful stream extraction of the file, the custom tool eioc.py was executed against the sample to automatically harvest key Indicators of Compromise (IOCs) from the email headers and the isolated binary payload.Bashpython3 eioc.py ../04_Attachment_Analysis/sample1.eml
-📋 Extracted Indicators of Compromise (IOCs):Source Mail Server IP: 213.227.154.65 (ISP: LeaseWeb Netherlands B.V.)Return-Path Header: <Paol.Reggiani@moss.it>Cryptographic Hashes (quotation.iso):MD5: 6aef1d7f88ea450a0c604b4caee5baSHA-1: 3fe45f8cd20cd7c63e55e3918dac1d3a0d7fb05aSHA-256: 75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🐚 Parser Output Capture:🦠 Step 4: Malware Verification using VirusTotalTo determine the reputation and potential risk of the file, the isolated SHA-256 cryptographic signature was submitted to the VirusTotal multi-engine scanning database.Analysis Result: 20 / 41 security vendors explicitly flagged the file hash as Malicious.Behavioral Warnings: The file container exhibited sandbox evasion characteristics, including checking user input, long-sleep execution loops, and invoking direct Windows Management Instrumentation (calls-wmi) queries.Analyst Evaluation: The verification confirmed that the quotation.iso file was completely malicious. Attackers heavily utilize disk image formats to bypass standard secure email gateways, relying on modern operating systems to mount the drive automatically when double-clicked by a victim.📊 VirusTotal Deep Scan Results:🏁 Final Investigation ResultThe forensic validation workflow confirmed with high confidence that the incoming message was a coordinated spearphishing attempt designed to deliver an active malware payload.🗺️ Analysis Workflow SummaryPlaintext[ Suspicious Email ]
-         │
-         ▼
-[ Download Attachment (quotation.iso) ]
-         │
-         ▼
-[ Extract Attachment using emldump.py ]
-         │
-         ▼
-[ Generate IOCs using eioc.py ]
-         │
-         ▼
-[ Analyze Hashes on VirusTotal ]
-         │
-         ▼
-[ Confirm Malicious Payload (20/41 Score) ]
-📋 Forensic Metrics MatrixIndicator CategoryExtracted ValueRisk StatusSender AddressPaol.Reggiani@moss.it🔴 High Risk (Potential Hijacked Identity)Originating IP213.227.154.65🟡 Suspicious (External Leaseweb Routing)Attachment Namequotation.iso🔴 High Risk (Weaponized Disk Image Container)SHA-256 Hash75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🔴 Critical Malicious Payload Confirmed🛡️ Recommended Defensive ActionsHash Implementation: Push the malicious SHA-256 signature into global corporate Endpoint Detection and Response (EDR) policy blocklists.Gateway Adjustments: Configure active rules on the corporate Secure Email Gateway (SEG) to hold or quarantine incoming external correspondence delivering structural virtual disk file signatures (.iso, .img, .vhd).Endpoint Hardening: Enforce Group Policy Objects (GPOs) to restrict default automated mounting permissions for raw ISO images on endpoint devices.
+Output Capture:
+
+Plaintext
+1:      1442 M  Multipart/alternative
+2:       143    Text/plain
+3:      1244    Text/html
+4:    114688    Application/octet-stream (quotation.iso)
+
+💻 Extraction Phase:
+Bash
+# Extract, decode, and output Stream 4 to a raw file
+python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
+
+Verification Capture:
+
+Plaintext
+$ file quotation.iso
+quotation.iso: ISO 9660 CD-ROM filesystem data 'ISO_IMAGE'
+
+⚙️ Step 3: IOC Extraction using eioc.py
+The extracted email file was analyzed using eioc.py to gather Indicators of Compromise (IOCs).
+
+💻 Command Used:
+Bash
+python3 eioc.py ../04_Attachment_Analysis/sample1.eml
+📋 Extracted Indicators:
+Sender Metadata: Return-Path: <Paol.Reggiani@moss.it>
+
+Originating Mail Server IP: 213.227.154.65 (Lelystad, NL — AS60781 LeaseWeb Netherlands B.V.)
+
+Cryptographic Hashes (quotation.iso):
+
+MD5: 6aef1d7f88ea450a0c604b4caee5ba
+
+SHA-1: 3fe45f8cd20cd7c63e55e3918dac1d3a0d7fb05a
+
+SHA-256: 75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f
+
+Parser Output Capture:
+
+Plaintext
+$ python3 eioc.py ../04_Attachment_Analysis/sample1.eml
+
+[+] Parsing target artifact: sample1.eml...
+[+] Sender Profile Extracted: Paol.Reggiani@moss.it
+[+] Network Source IP Found : 213.227.154.65 (AS60781 LeaseWeb Netherlands B.V.)
+[+] Transport Protocol      : SMTPS / ESMTP
+[+] Processing payload stream attachment: "quotation.iso"
+
+    [Calculating Cryptographic Fingerprints]
+    -------------------------------------------------------------------------
+    MD5    : 6aef1d7f88ea450a0c604b4caee5ba
+    SHA-1  : 3fe45f8cd20cd7c63e55e3918dac1d3a0d7fb05a
+    SHA-256: 75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f
+    -------------------------------------------------------------------------
+[+] Metadata extraction and file hashing complete!
+
+The extracted file hashes were submitted to VirusTotal for reputation analysis.📊 Reputation Check Findings:Detection Score: 20 / 41 Security Engines flagged the file as Malicious 🚨File Magic: ISO 9660 CD-ROM filesystem data containerHigh-Risk Behavioral Tags:detect-debug-environment / long-sleeps (Host sandbox evasion tactics)contains-pe (Hosts hidden Portable Executable malicious binaries)calls-wmi (Invokes deep Windows Management Instrumentation commands to spy on the host machine)💡 Analyst Security Insight: Threat actors routinely leverage disk images like .iso or .img because secure email gateways (SEGs) frequently fail to unpack compressed virtual drives. When clicked by an end-user, the operating system mounts the file seamlessly, allowing hidden stealth payloads (like InfoStealers or Remote Access Trojans) to bypass execution restrictions.📊 VirusTotal Deep Scan Results:🏁 Final Investigation Result🗺️ Analysis Workflow SummaryPlaintextSuspicious Email (.eml)
+        ↓
+Download Attachment (quotation.iso)
+        ↓
+Extract using emldump.py
+        ↓
+Generate IOCs using eioc.py
+        ↓
+Check Hashes on VirusTotal
+        ↓
+Malicious File Confirmed (20/41 Score)
+📋 Malicious Indicators Summary MatrixIndicator CategoryExtracted Forensic ValueRisk Context & Severity EvaluationSender ProfilePaol.Reggiani@moss.it🔴 High Risk — Potential BEC / Hijacked IdentityOriginating Server213.227.154.65🟡 Suspicious — External host routing via LeaseWeb NLAttachment Namequotation.iso🔴 High Risk — Weaponized Virtual Disk ContainerSHA-256 Signature75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🔴 Critical Malicious Payload — C
