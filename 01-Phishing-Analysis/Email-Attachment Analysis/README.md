@@ -5,8 +5,8 @@
 ![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20Malware%20Analysis-blue?style=for-the-badge&logo=linux&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
 ![Tools Used](https://img.shields.io/badge/Tools-emldump.py%20%7C%20eioc.py%20%7C%20VirusTotal-orange?style=for-the-badge)
+io)*
 
-*Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
 
 </div>
 
