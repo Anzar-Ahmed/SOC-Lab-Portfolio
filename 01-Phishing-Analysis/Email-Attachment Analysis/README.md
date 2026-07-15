@@ -75,3 +75,20 @@ python3 ../Tools/emldump.py sample1.eml
 
 # Extract, decode, and dump Stream 4 to a raw ISO file
 python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
+
+[ 📥 Suspicious Email ] 
+             │
+             ▼
+ [ 📁 Download Attachment (quotation.iso) ]
+             │
+             ▼
+ [ 📦 Extract Attachment using emldump.py ]
+             │
+             ▼
+ [ ⚙️ Generate IOCs & Hashes using eioc.py ]
+             │
+             ▼
+ [ 🔍 Analyze Hashes on VirusTotal ]
+             │
+             ▼
+ [ 🛑 Confirm Malicious Payload (20/41 Score) ]
