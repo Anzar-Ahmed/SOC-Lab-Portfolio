@@ -1,6 +1,19 @@
 <div align="center">
 
 # 📧 Email Header Analysis
+<div align="center">
+
+# 📧 Email Header Analysis & Threat Intelligence
+
+![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20Threat%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
+![Emails](https://img.shields.io/badge/Emails%20Analyzed-Multiple-orange?style=for-the-badge)
+
+*Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
+
+</div>
+
+---
 
 ![Category](https://img.shields.io/badge/Category-Phishing%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
