@@ -1,15 +1,13 @@
 <div align="center">
 
-# 📧 Email Header Analysis
 <div align="center">
-
----
 <p align="center"> 
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=Email%20Header%20Analysis&fontSize=35&fontColor=ffffff" /> 
 </p> 
 ....
-
----
+<p align="center"> 
+  <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
+</p>
 ![Category](https://img.shields.io/badge/Category-Phishing%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
 ![Emails Analyzed](https://img.shields.io/badge/Emails%20Analyzed-2%2F2-success?style=for-the-badge)
@@ -18,7 +16,6 @@
 
 </div>
 
----
 
 ### 🎯 Objective
 To analyze raw email headers from suspicious/phishing samples using a text editor (Sublime Text) to identify sender spoofing, authentication mismatches (SPF/DKIM/DMARC), and Reply-To/Return-Path inconsistencies — without relying on automated header-analysis tools, in order to build strong manual analysis fundamentals.
