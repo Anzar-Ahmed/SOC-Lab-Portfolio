@@ -1,6 +1,5 @@
 <div align="center">
 
-# 📁 Email Attachment Extraction & Malicious Payload Analysis
 <p align="center"> <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=Email%20Attachment%20Analysis&fontSize=35&fontColor=ffffff" /> </p> <p align="center"> <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Malware%20Analysis-blue?style=for-the-badge"> <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> <img src="https://img.shields.io/badge/Tools-emldump.py%20%7C%20eioc.py%20%7C%20VirusTotal-orange?style=for-the-badge"> </p> <p align="center"> <b>Part of SOC Lab Portfolio → Phishing Analysis</b> </p>
 
 ![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20Malware%20Analysis-blue?style=for-the-badge&logo=linux&logoColor=white)
