@@ -1,4 +1,3 @@
-<div align="center">
 <p align="center"> 
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Email%20Header%20Analysis%20%26%20Threat%20Intel&fontSize=32&fontColor=ffffff" /> 
 </p> 
@@ -8,6 +7,12 @@
   <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
   <img src="https://img.shields.io/badge/Analysis-SOC%20Level-purple?style=for-the-badge"> 
 </p> 
+
+<p align="center"> 
+  <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
+</p>
+
+---
 
 <p align="center"> 
   <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
