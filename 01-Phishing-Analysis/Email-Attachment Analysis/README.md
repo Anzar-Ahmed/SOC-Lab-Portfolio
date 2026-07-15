@@ -128,10 +128,6 @@ $ python3 eioc.py ../04_Attachment_Analysis/sample1.eml
 
 ---
 
-
-
----
-
 ## 🛡️ Step 4: VirusTotal Analysis  
 
 The extracted file hashes were submitted to VirusTotal for reputation analysis.
@@ -162,7 +158,7 @@ When opened, the operating system mounts the file, allowing hidden payloads (e.g
 
 ### 🗺️ Analysis Workflow Summary  
 
-```text
+
 Suspicious Email (.eml)
         ↓
 Download Attachment (quotation.iso)
