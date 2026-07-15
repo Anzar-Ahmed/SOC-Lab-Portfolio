@@ -1,5 +1,4 @@
 <div align="center">
-#EMAIL HEADER ANALYSIS##
 <p align="center"> 
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Email%20Header%20Analysis%20%26%20Threat%20Intel&fontSize=32&fontColor=ffffff" /> 
 </p> 
