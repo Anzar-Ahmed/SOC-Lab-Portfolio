@@ -5,16 +5,21 @@
 
 # 📧 Email Content Analysis
 
+<p align="center"> 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B0000,100:FF4C4C&height=200&section=header&text=Email%20Content%20Analysis&fontSize=35&fontColor=ffffff" /> 
+</p> 
 
+<p align="center"> 
+  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Content%20Analysis-red?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Focus-Phishing%20%7C%20Social%20Engineering-orange?style=for-the-badge"> 
+</p> 
 
-![Category](https://img.shields.io/badge/Category-Phishing%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
+<p align="center"> 
+  <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
+</p>
 
-![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
-
-![Samples Analyzed](https://img.shields.io/badge/Samples%20Analyzed-3%2F3-success?style=for-the-badge)
-
-
-
+---
 *Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
 
 
