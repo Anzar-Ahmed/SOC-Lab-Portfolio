@@ -1,17 +1,18 @@
 <p align="center"> 
-<p align="center"> 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=Email%20Header%20Analysis&fontSize=35&fontColor=ffffff" /> 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Email%20Header%20Analysis&fontSize=35&fontColor=ffffff" /> 
 </p> 
 
 <p align="center"> 
-  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Threat%20Analysis-blue?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Threat%20Analysis-purple?style=for-the-badge"> 
   <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
-  <img src="https://img.shields.io/badge/Emails%20Analyzed-Multiple-orange?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Emails%20Analyzed-Multiple-blueviolet?style=for-the-badge"> 
 </p> 
 
 <p align="center"> 
   <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
 </p>
+
+---
 
 
 ---
