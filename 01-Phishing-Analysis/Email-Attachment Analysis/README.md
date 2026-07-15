@@ -126,7 +126,54 @@ $ python3 eioc.py ../04_Attachment_Analysis/sample1.eml
     -------------------------------------------------------------------------
 [+] Metadata extraction and file hashing complete!
 
-The extracted file hashes were submitted to VirusTotal for reputation analysis.📊 Reputation Check Findings:Detection Score: 20 / 41 Security Engines flagged the file as Malicious 🚨File Magic: ISO 9660 CD-ROM filesystem data containerHigh-Risk Behavioral Tags:detect-debug-environment / long-sleeps (Host sandbox evasion tactics)contains-pe (Hosts hidden Portable Executable malicious binaries)calls-wmi (Invokes deep Windows Management Instrumentation commands to spy on the host machine)💡 Analyst Security Insight: Threat actors routinely leverage disk images like .iso or .img because secure email gateways (SEGs) frequently fail to unpack compressed virtual drives. When clicked by an end-user, the operating system mounts the file seamlessly, allowing hidden stealth payloads (like InfoStealers or Remote Access Trojans) to bypass execution restrictions.📊 VirusTotal Deep Scan Results:🏁 Final Investigation Result🗺️ Analysis Workflow SummaryPlaintextSuspicious Email (.eml)
+---
+
+
+
+---
+
+## 🛡️ Step 4: VirusTotal Analysis  
+
+The extracted file hashes were submitted to VirusTotal for reputation analysis.
+
+---
+
+### 📊 Reputation Check Findings  
+
+- **Detection Score:** 20 / 41 (Malicious) 🚨  
+- **File Magic:** ISO 9660 CD-ROM filesystem  
+- **High-Risk Behavioral Tags:**
+  - detect-debug-environment (sandbox evasion)
+  - long-sleeps (delayed execution)
+  - contains-pe (hidden executable payload)
+  - calls-wmi (system reconnaissance activity)
+
+---
+
+### 💡 Analyst Security Insight  
+
+Threat actors frequently use `.iso` or `.img` files because Secure Email Gateways (SEGs) often fail to inspect virtual disk containers.
+
+When opened, the operating system mounts the file, allowing hidden payloads (e.g., InfoStealers or RATs) to execute silently and bypass security controls.
+
+---
+
+## 🏁 Final Investigation Result  
+
+### 🗺️ Analysis Workflow Summary  
+
+```text
+Suspicious Email (.eml)
+        ↓
+Download Attachment (quotation.iso)
+        ↓
+Extract using emldump.py
+        ↓
+Generate IOCs using eioc.py
+        ↓
+Check Hashes on VirusTotal
+        ↓
+Malicious File Confirmed (20/41)
         ↓
 Download Attachment (quotation.iso)
         ↓
