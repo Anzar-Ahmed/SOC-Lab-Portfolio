@@ -13,35 +13,60 @@
 ---
 
 ### 🎯 Objective
-To safely triage a suspicious email, download its payload, dynamically isolate/extract the underlying file structure from raw MIME streams inside a Linux sandbox, parse key Indicators of Compromise (IOCs), and cross-examine the cryptographic signatures against threat intelligence databases to verify malware delivery.
+To safely triage a suspicious email, isolate its payload, dynamically extract raw binary data from MIME streams inside a controlled Linux sandbox, and cross-examine cryptographic signatures against global threat intelligence to confirm malware delivery.
 
 ### 🧰 Tools & Environment
-* **emldump.py (Python Utility):** A specialized command-line tool used to analyze the structure of a MIME message (EML file) and dump specific attachment streams.
-* **eioc.py (Custom Python Parser):** A rapid-triage script to extract email metadata, transport path IPs, domains, and attachment hashes simultaneously.
-* **VirusTotal:** A centralized malware scanning platform utilized to cross-examine cryptographic file hashes against industry-standard anti-malware engine definitions.
+<table>
+  <tr>
+    <td><b>🔧 emldump.py</b></td>
+    <td>A specialized command-line utility used to analyze the internal structure of a MIME message (EML file) and dump specific attachment streams.</td>
+  </tr>
+  <tr>
+    <td><b>⚡ eioc.py</b></td>
+    <td>A custom rapid-triage script used to simultaneously extract email metadata, transport layer IPs, domains, and cryptographic attachment hashes.</td>
+  </tr>
+  <tr>
+    <td><b>🛡️ VirusTotal</b></td>
+    <td>A global centralized scanner used to cross-examine cryptographic hashes against industry-leading anti-malware security vendor definitions.</td>
+  </tr>
+</table>
 
 ---
 
 ## 🔬 Technical Extraction & Analysis Walkthrough
 
-### 📁 Step 1: Initial Email Triage & Attachment Download
-First, the suspicious email was reviewed inside an isolated mail reader to identify potential phishing indicators and analyze the social engineering scenario:
+### 📁 Artifact 01: sample1.eml Analysis (Attachment Forensic Workflow)
+
+<details open>
+<summary><b>Click to collapse/expand Sample 1 Forensic Breakdown</b></summary>
+<br>
+
+### 🔍 Step 1: Initial Email Triage & Attachment Download
+First, the suspicious email file (`sample1.eml`) was reviewed inside an isolated environment to identify potential phishing indicators and understand the attack vector.
+
+#### 📝 Triage Assessment:
 * **Subject Line:** `FW: Due Invoice Payment - protonmail.com - Wire Transfer Document`
-* **Sender:** Paolo Reggiani (`Paol.Reggiani@moss.it`)
-* **Recipient:** `wpx@protonmail.com`
+* **Sender Profile:** Paolo Reggiani (`Paol.Reggiani@moss.it`)
+* **Recipient Target:** `wpx@protonmail.com`
 * **Attachment Name:** `quotation.iso` (Size: 112 KB)
-* **Social Engineering Narrative:** The email uses an urgency-based social engineering tactic by masquerading as a critical bank/wire transfer confirmation, prompting the victim to mount and open the attachment.
+* **Social Engineering Tactic:** The email uses an urgency-driven invoice/payment narrative, forcing the recipient to view the attachment to re-confirm wire transfer details.
 
-After mapping the initial parameters, the suspicious `.eml` container was safely downloaded and moved into a forensic staging folder.
+> ⚠️ **Analyst Action:** The suspicious `.iso` file was safely downloaded from the secure email environment for localized forensic evaluation.
 
-#### 📧 Raw Email Interface:
+#### 📧 Raw Email Staging Interface:
 ![Suspicious Email with ISO Attachment](Email_Attachment.png)
 
 ---
 
 ### 📦 Step 2: Extracting Attachment from Raw Email using `emldump.py`
-To avoid interacting with the file inside a live host system, we performed a secure extraction. We leveraged `emldump.py` to analyze the raw MIME streams of the file:
-1. **Structure Scan:** Running the command-line utility targeted Stream 4, which was classified as `application/octet-stream` containing the `quotation.iso` file payload (114,688 bytes).
-2. **Payload Extraction:** The attachment stream was isolated, decoded dynamically (`-d`), and safely dumped into our staging directory as a raw ISO disk image:
+To avoid risky interactive extraction on a live host machine, `emldump.py` was used to analyze the raw MIME streams of the email and pinpoint where the encoded attachment data was stored.
+
+#### 📊 Stream Analysis Results:
+* **Target Stream:** `Stream 4`
+* **Content Type:** `application/octet-stream`
+* **Target Filename:** `quotation.iso`
+* **Raw Stream Size:** `114,688 bytes`
+
+We executed the following extraction script to isolate Stream 4, decode the raw base64 data streams (`-d`), and output the structured file inside our safe environment:
 ```bash
 python3 ../Tools/emldump.py sample1.eml s4 -d > quotation.iso
