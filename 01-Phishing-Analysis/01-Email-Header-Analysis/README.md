@@ -1,20 +1,20 @@
 <div align="center">
-
-<div align="center">
+#EMAIL HEADER ANALYSIS##
 <p align="center"> 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=Email%20Header%20Analysis&fontSize=35&fontColor=ffffff" /> 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Email%20Header%20Analysis%20%26%20Threat%20Intel&fontSize=32&fontColor=ffffff" /> 
 </p> 
-....
+
+<p align="center"> 
+  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Threat%20Intel-blue?style=for-the-badge&logo=gmail&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Analysis-SOC%20Level-purple?style=for-the-badge"> 
+</p> 
+
 <p align="center"> 
   <b>Part of SOC Lab Portfolio → Phishing Analysis</b> 
 </p>
-![Category](https://img.shields.io/badge/Category-Phishing%20Analysis-blue?style=for-the-badge&logo=gmail&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
-![Emails Analyzed](https://img.shields.io/badge/Emails%20Analyzed-2%2F2-success?style=for-the-badge)
 
-*Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
-
-</div>
+---
 
 
 ### 🎯 Objective
