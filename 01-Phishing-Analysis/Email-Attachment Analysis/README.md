@@ -68,5 +68,10 @@ To avoid risky interactive extraction on a live host machine, `emldump.py` was u
 * **Raw Stream Size:** `114,688 bytes`
 
 We executed the following extraction script to isolate Stream 4, decode the raw base64 data streams (`-d`), and output the structured file inside our safe environment:
+
 ```bash
-python3 ../Tools/emldump.py sample1.eml s4 -d > quotation.iso
+# Analyze EML file streams to locate the payload stream
+python3 ../Tools/emldump.py sample1.eml
+
+# Extract, decode, and dump Stream 4 to a raw ISO file
+python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
