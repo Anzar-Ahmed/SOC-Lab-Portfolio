@@ -70,25 +70,32 @@ To avoid risky interactive extraction on a live host machine, `emldump.py` was u
 We executed the following extraction script to isolate Stream 4, decode the raw base64 data streams (`-d`), and output the structured file inside our safe environment:
 
 ```bash
-# Analyze EML file streams to locate the payload stream
-python3 ../Tools/emldump.py sample1.eml
-
-# Extract, decode, and dump Stream 4 to a raw ISO file
 python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
+$ python3 ../Tools/emldump.py sample1.eml
+1:      1442 M  Multipart/alternative
+2:       143    Text/plain
+3:      1244    Text/html
+4:    114688    Application/octet-stream (quotation.iso)
 
-[ 📥 Suspicious Email ] 
-             │
-             ▼
- [ 📁 Download Attachment (quotation.iso) ]
-             │
-             ▼
- [ 📦 Extract Attachment using emldump.py ]
-             │
-             ▼
- [ ⚙️ Generate IOCs & Hashes using eioc.py ]
-             │
-             ▼
- [ 🔍 Analyze Hashes on VirusTotal ]
-             │
-             ▼
- [ 🛑 Confirm Malicious Payload (20/41 Score) ]
+$ python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
+$ file quotation.iso
+quotation.iso: ISO 9660 CD-ROM filesystem data 'ISO_IMAGE'
+
+python3 eioc.py ../04_Attachment_Analysis/sample1.eml
+
+[ Suspicious Email ]
+         │
+         ▼
+[ Download Attachment (quotation.iso) ]
+         │
+         ▼
+[ Extract Attachment using emldump.py ]
+         │
+         ▼
+[ Generate IOCs using eioc.py ]
+         │
+         ▼
+[ Analyze Hashes on VirusTotal ]
+         │
+         ▼
+[ Confirm Malicious Payload (20/41 Score) ]
