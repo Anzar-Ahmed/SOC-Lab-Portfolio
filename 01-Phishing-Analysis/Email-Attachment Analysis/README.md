@@ -9,6 +9,7 @@
 
 ---
 
+
 ### 🎯 Objective
 To safely triage a suspicious email, isolate its payload, dynamically extract raw binary data from MIME streams inside a controlled Linux sandbox, and cross-examine cryptographic signatures against global threat intelligence to confirm malware delivery.
 
@@ -64,23 +65,13 @@ To avoid risky interactive extraction on a live host machine, `emldump.py` was u
 * **Target Filename:** `quotation.iso`
 * **Raw Stream Size:** `114,688 bytes`
 
-We executed the following extraction script to isolate Stream 4, decode the raw base64 data streams (`-d`), and output the structured file inside our safe environment:
-
+#### 💻 Stream Discovery Phase:
 ```bash
-python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
-$ python3 ../Tools/emldump.py sample1.eml
-1:      1442 M  Multipart/alternative
-2:       143    Text/plain
-3:      1244    Text/html
-4:    114688    Application/octet-stream (quotation.iso)
+# Analyze the EML file structure to locate the payload stream
+python3 ../Tools/emldump.py sample1.eml
 
-$ python3 ../Tools/emldump.py sample1.eml -s 4 -d > quotation.iso
-$ file quotation.iso
-quotation.iso: ISO 9660 CD-ROM filesystem data 'ISO_IMAGE'
-
-python3 eioc.py ../04_Attachment_Analysis/sample1.eml
-
-[ Suspicious Email ]
+🐚 Linux Console Extraction Proof:⚙️ Step 3: Metadata & IOC Extraction using eioc.pyFollowing the successful stream extraction of the file, the custom tool eioc.py was executed against the sample to automatically harvest key Indicators of Compromise (IOCs) from the email headers and the isolated binary payload.Bashpython3 eioc.py ../04_Attachment_Analysis/sample1.eml
+📋 Extracted Indicators of Compromise (IOCs):Source Mail Server IP: 213.227.154.65 (ISP: LeaseWeb Netherlands B.V.)Return-Path Header: <Paol.Reggiani@moss.it>Cryptographic Hashes (quotation.iso):MD5: 6aef1d7f88ea450a0c604b4caee5baSHA-1: 3fe45f8cd20cd7c63e55e3918dac1d3a0d7fb05aSHA-256: 75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🐚 Parser Output Capture:🦠 Step 4: Malware Verification using VirusTotalTo determine the reputation and potential risk of the file, the isolated SHA-256 cryptographic signature was submitted to the VirusTotal multi-engine scanning database.Analysis Result: 20 / 41 security vendors explicitly flagged the file hash as Malicious.Behavioral Warnings: The file container exhibited sandbox evasion characteristics, including checking user input, long-sleep execution loops, and invoking direct Windows Management Instrumentation (calls-wmi) queries.Analyst Evaluation: The verification confirmed that the quotation.iso file was completely malicious. Attackers heavily utilize disk image formats to bypass standard secure email gateways, relying on modern operating systems to mount the drive automatically when double-clicked by a victim.📊 VirusTotal Deep Scan Results:🏁 Final Investigation ResultThe forensic validation workflow confirmed with high confidence that the incoming message was a coordinated spearphishing attempt designed to deliver an active malware payload.🗺️ Analysis Workflow SummaryPlaintext[ Suspicious Email ]
          │
          ▼
 [ Download Attachment (quotation.iso) ]
@@ -96,3 +87,4 @@ python3 eioc.py ../04_Attachment_Analysis/sample1.eml
          │
          ▼
 [ Confirm Malicious Payload (20/41 Score) ]
+📋 Forensic Metrics MatrixIndicator CategoryExtracted ValueRisk StatusSender AddressPaol.Reggiani@moss.it🔴 High Risk (Potential Hijacked Identity)Originating IP213.227.154.65🟡 Suspicious (External Leaseweb Routing)Attachment Namequotation.iso🔴 High Risk (Weaponized Disk Image Container)SHA-256 Hash75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🔴 Critical Malicious Payload Confirmed🛡️ Recommended Defensive ActionsHash Implementation: Push the malicious SHA-256 signature into global corporate Endpoint Detection and Response (EDR) policy blocklists.Gateway Adjustments: Configure active rules on the corporate Secure Email Gateway (SEG) to hold or quarantine incoming external correspondence delivering structural virtual disk file signatures (.iso, .img, .vhd).Endpoint Hardening: Enforce Group Policy Objects (GPOs) to restrict default automated mounting permissions for raw ISO images on endpoint devices.
