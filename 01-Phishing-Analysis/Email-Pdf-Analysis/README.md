@@ -53,7 +53,7 @@ This investigation demonstrates advanced static triage of a evasive PDF document
 The incoming suspicious document, disguised as an official Amazon Account Billing statement (`Statement.pdf`), warns the recipient of unusual billing activity and lures them into clicking a call-to-action button labeled "Verify Now".
 
 #### 📧 Email Attachment Preview:
-![Amazon Phishing PDF](Statement.pdf.png)
+![PDF Preview](assets/pdf-preview.png)
 
 During the triage phase, we computed the SHA-256 cryptographic signature of the target file (`pdf-doc-vba-eicar-dropper.pdf`) and queried it against global threat intelligence platforms:
 * **Target File Name:** `pdf-doc-vba-eicar-dropper.pdf`
@@ -62,7 +62,7 @@ During the triage phase, we computed the SHA-256 cryptographic signature of the 
 #### ❌ The "Hash Check Only" Trap:
 The hash query on VirusTotal returned **"No matches found"**, indicating a zero-day variant or a dynamically modified, unrecognized payload.
 
-![VirusTotal Hash Not Found](Virustotal-Result.png)
+![VirusTotal Result](assets/vt-no-detection.png)
 
 > 💡 **Analyst Insight:** Threat actors frequently modify superficial bytes of malicious documents (e.g., changing benign metadata fields or adding null bytes) to completely change the resulting file hash. If a Tier-1 SOC analyst stops their investigation at a "clean" VirusTotal hash check, they will falsely close a critical intrusion attempt. This emphasizes the necessity of behavioral and structural analysis.
 
