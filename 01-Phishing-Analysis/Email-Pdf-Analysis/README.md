@@ -54,6 +54,7 @@ The incoming suspicious document, disguised as an official Amazon Account Billin
 
 #### 📧 Email Attachment Preview:
 ![PDF Preview](sample-01/pdf-preview.png)
+
 During the triage phase, we computed the SHA-256 cryptographic signature of the target file (`pdf-doc-vba-eicar-dropper.pdf`) and queried it against global threat intelligence platforms:
 * **Target File Name:** `pdf-doc-vba-eicar-dropper.pdf`
 * **Computed SHA-256 Hash:** `e90e263bce015c0ad6640d2581582aee4f940accc1d688a25d9a319e39c4110`
