@@ -72,3 +72,53 @@ To identify structural indicators (such as automated script execution flags) wit
 #### 💻 Command Executed:
 ```bash
 python3 ../../Tools/pdfid.py pdf-doc-vba-eicar-dropper.pdf
+📌 Purpose of the Command:
+The pdfid.py tool scans the internal structure of a PDF file and highlights key indicators that are commonly associated with malicious documents, including:
+
+/JavaScript → Presence of embedded scripts
+
+/OpenAction → Automatic execution upon opening the file
+
+/AA (Additional Actions) → Hidden triggers
+
+/URI → Embedded links (often phishing URLs)
+
+/ObjStm → Object streams that may hide malicious content
+
+🐚 Terminal Output Capture:
+🧠 Analyst Insight:
+This step is critical in identifying suspicious behaviors without rendering the file, thereby avoiding potential exploitation. Even if the file appears benign or is undetected by antivirus engines, structural anomalies revealed by pdfid.py can indicate malicious intent. This reinforces the importance of behavioral and structural analysis over simple hash-based detection, especially when dealing with unknown or zero-day threats.
+
+🕸️ Step 3: Extracting Hidden Link/Payload with pdf-parser.py
+Given the confirmation of active elements and auto-run routines, we utilized pdf-parser.py to inspect the internal structural objects of the PDF, targeted on isolating hidden hyperlinks (/URI).
+
+💻 Command Executed:
+
+python3 ../../Tools/pdf-parser.py pdf-doc-vba-eicar-dropper.pdf
+🐚 Terminal Output Capture:
+🕵️ Forensic Findings (Object 1 Triage):
+Upon parsing the elements, we analyzed the details of obj 1 0. The structural content revealed a hidden external reference link linked directly to the front-facing "Verify Now" button:
+
+Trigger Type: /Link
+
+Suspicious URI: [https://script.google.com/macros/s/AKfycbwABk1V3TSZ7dwG4lOsmbewJuEt2TExXS8cSaYuhcQwcxoffsDSJS8VLR4h0pkJFwkUQ/exec](https://script.google.com/macros/s/AKfycbwABk1V3TSZ7dwG4lOsmbewJuEt2TExXS8cSaYuhcQwcxoffsDSJS8VLR4h0pkJFwkUQ/exec)
+Threat Analysis: The payload utilizes a legitimate third-party infrastructure URL (script.google.com) to execute a Google Apps Script macro. This technique (known as Living-off-the-Cloud or LoTC) is designed to bypass standard DNS blocklists. Upon clicking, the script logs system properties and redirects the user to credential harvesting infrastructure or executes a secondary drive-by download.
+
+🏁 Final Investigation Result
+🗺️ Document Triage Workflow
+[ 📄 Suspicious PDF File ]
+            │
+            ▼
+ [ 🔍 VirusTotal Check ] ───> Result: "No Matches Found" (Bypassed static signature defenses)
+            │
+            ▼
+ [ ⚙️ Static Structural Triage ] ───> Utilized pdfid.py ───> Identified: `/JS`, `/OpenAction`
+            │
+            ▼
+ [ 🕸️ Structural Parsing ] ───> Utilized pdf-parser.py ───> Analyzed: Object 1 structure
+            │
+            ▼
+ [ 🎯 Indicator Extraction ] ───> Isolated URL: `[script.google.com/macros/s/](https://script.google.com/macros/s/)...`
+            │
+            ▼
+ [ 🛑 Action Taken ] ───> Confirmed Phishing Campaign. Blocked extracted domain/URI on proxy/firewall.
