@@ -1,12 +1,18 @@
 <div align="center">
 
-# 📄 PDF Phishing Triage & Static Document Forensics
+<p align="center"> 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,100:2c5364&height=200&section=header&text=PDF%20Phishing%20Triage&fontSize=35&fontColor=ffffff" /> 
+</p> 
 
-![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20Maldoc%20Analysis-blue?style=for-the-badge&logo=linux&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
-![Tools Used](https://img.shields.io/badge/Tools-pdfid.py%20%7C%20pdf--parser.py%20%7C%20VirusTotal-orange?style=for-the-badge)
+<p align="center"> 
+  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20Maldoc%20Analysis-blue?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Tools-pdfid.py%20%7C%20pdf--parser.py%20%7C%20VirusTotal-orange?style=for-the-badge"> 
+</p> 
 
-*Part of the [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)*
+<p align="center"> 
+  <b>Part of [Phishing Analysis](../) section — [SOC Lab Portfolio](https://github.com/Anzar-Ahmed/SOC-Lab-Portfolio)</b> 
+</p>
 
 </div>
 
@@ -45,23 +51,24 @@ To demonstrate that relying solely on file hashes for document triaging is insuf
 The suspicious document, disguised as an Amazon Account Hold Notice (`Statement.pdf`), warns the user of unusual payment activity and urges them to click "Verify Now" to restore access. 
 
 #### 📧 Document Preview:
-<img src="Statement.pdf.png" alt="Amazon Phishing PDF" width="550px">
+![Amazon Phishing PDF](Statement.pdf.png)
 
-To perform an initial threat intelligence query, we computed the SHA-256 cryptographic signature of the PDF file and searched it on VirusTotal:
+To perform an initial threat intelligence query, we computed the SHA-256 cryptographic signature of the target PDF file (`pdf-doc-vba-eicar-dropper.pdf`) and searched it on VirusTotal:
 * **Target File:** `pdf-doc-vba-eicar-dropper.pdf`
 * **SHA-256 Hash:** `e90e263bce015c0ad6640d2581582aee4f940accc1d688a25d9a319e39c4110`
 
 #### ❌ The "Hash Check Only" Trap:
 Upon querying the signature, VirusTotal returned **"No matches found"**.
 
-<img src="Virustotal-Result.png" alt="VirusTotal Hash Not Found" width="650px">
+![VirusTotal Hash Not Found](Virustotal-Result.png)
 
 > 💡 **Analyst Insight:** If a SOC analyst only checks the hash value on threat databases, they might wrongly assume the file is safe and mark the alert as a false positive. Threat actors frequently create fresh document variants to ensure unique hashes, effectively bypassing signature-based protection tools. Deep static analysis is essential.
 
 ---
 
 ### ⚙️ Step 2: Structural Triage using `pdfid.py`
-To identify hidden features or embedded scripts without rendering the file, we ran `pdfid.py` inside our isolated Linux sandbox.
+To identify hidden features, embedded scripts, or execution flags without rendering the file, we ran `pdfid.py` against our target file inside our isolated Linux sandbox.
 
+#### 💻 Command Used:
 ```bash
 python3 ../../Tools/pdfid.py pdf-doc-vba-eicar-dropper.pdf
