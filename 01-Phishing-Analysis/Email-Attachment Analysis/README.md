@@ -51,7 +51,7 @@ First, the suspicious email file (`sample1.eml`) was reviewed inside an isolated
 > ⚠️ **Analyst Action:** The suspicious `.iso` file was safely downloaded from the secure email environment for localized forensic evaluation.
 
 #### 📧 Raw Email Staging Interface:
-![Suspicious Email with ISO Attachment](Email_Attachment.png)
+![Suspicious Email with ISO Attachment](sample-01/Email_Attachment.png)
 
 ---
 
