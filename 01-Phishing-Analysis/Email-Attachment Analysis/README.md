@@ -180,4 +180,8 @@ Generate IOCs using eioc.py
 Check Hashes on VirusTotal
         ↓
 Malicious File Confirmed (20/41 Score)
-📋 Malicious Indicators Summary MatrixIndicator CategoryExtracted Forensic ValueRisk Context & Severity EvaluationSender ProfilePaol.Reggiani@moss.it🔴 High Risk — Potential BEC / Hijacked IdentityOriginating Server213.227.154.65🟡 Suspicious — External host routing via LeaseWeb NLAttachment Namequotation.iso🔴 High Risk — Weaponized Virtual Disk ContainerSHA-256 Signature75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f🔴 Critical Malicious Payload — C
+📋 Malicious Indicators Summary MatrixIndicator CategoryExtracted Forensic ValueRisk Context & Severity EvaluationSender ProfilePaol.Reggiani@moss.it
+🔴 High Risk — Potential BEC / Hijacked IdentityOriginating Server213.227.154.65
+🟡 Suspicious — External host routing via LeaseWeb NLAttachment Namequotation.iso
+🔴 High Risk — Weaponized Virtual Disk ContainerSHA-256 Signature75fdb848eac332b4ca7d88f497e7ba7ebbb9a798d825b28cf1f87b9d7149e87f
+🔴 Critical Malicious Payload — C
