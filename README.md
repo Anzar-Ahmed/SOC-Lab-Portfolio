@@ -1,18 +1,18 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=cylinder&color=0:0f172a,50:1e3a8a,100:0ea5e9&height=230&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=f8fafc&animation=fadeIn&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=7dd3fc&descAlignY=65" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:000000,50:022c22,100:064e3b&height=230&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=4ade80&animation=twinkling&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=86efac&descAlignY=65" width="100%" />
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2500&pause=1000&color=38BDF8&center=true&vCenter=true&width=750&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2500&pause=1000&color=4ADE80&center=true&vCenter=true&width=750&lines=%3E+whoami+%3A+SOC+Analyst;%3E+scanning+for+threats...;%3E+MITRE+ATT%26CK+mapped;%3E+status%3A+Blue+Team+Ready" />
 
 <br/><br/>
 
-<img src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" />
-<img src="https://img.shields.io/badge/Wazuh-1E90FF?style=for-the-badge&logo=wazuh&logoColor=white" />
-<img src="https://img.shields.io/badge/Suricata-CC0000?style=for-the-badge&logo=suricata&logoColor=white" />
-<img src="https://img.shields.io/badge/MITRE_ATT%26CK-red?style=for-the-badge&logo=mitre&logoColor=white" />
-<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
+<img src="https://img.shields.io/badge/-Splunk-000000?style=flat-square&logo=splunk&logoColor=green" />
+<img src="https://img.shields.io/badge/-Wazuh-000000?style=flat-square&logo=wazuh&logoColor=green" />
+<img src="https://img.shields.io/badge/-Kali_Linux-000000?style=flat-square&logo=kalilinux&logoColor=green" />
+<img src="https://img.shields.io/badge/-TryHackMe-000000?style=flat-square&logo=tryhackme&logoColor=green" />
 
 </div>
+
 ---
 
 ## 🎯 Objectives
