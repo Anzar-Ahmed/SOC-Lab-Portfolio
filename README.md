@@ -1,12 +1,13 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:0f2027,100:00f2fe&height=240&section=header&text=🛡️%20SOC%20Analyst&fontSize=42&fontColor=00f2fe&animation=twinkling&fontAlignY=35&desc=Blue%20Team%20%7C%20Threat%20Detection%20%7C%20DFIR&descSize=18&descAlignY=60" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d1117,50:1f1c2c,100:00f2fe&height=250&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=00f2fe&animation=fadeIn&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descAlignY=65" width="100%" />
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=22&duration=2000&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Analyzing+Logs+Like+a+SOC+Analyst;Detecting+Threats+in+Real-Time;Turning+Alerts+into+Investigations" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00F2FE&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
 
 </div>
+
 
 ---
 
