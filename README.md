@@ -2,16 +2,27 @@
 
 # 🛡️ SOC Analyst Lab Portfolio
 
-![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=928DAB&center=true&vcenter=true&width=600&height=70&lines=SOC+Analyst+Lab+Portfolio;Threat+Detection+%26+Incident+Response;SIEM%2C+Digital+Forensics+%26+Triage)
+![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=00F2FE&center=true&vcenter=true&width=600&height=70&lines=SOC+Analyst+Lab+Portfolio;Threat+Detection+%26+Incident+Response;SIEM%2C+Digital+Forensics+%26+Triage)
 
-[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-purple?style=for-the-badge)](https://github.com/)
-[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-blueviolet?style=for-the-badge)](https://github.com/)
-[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-success?style=for-the-badge)](https://github.com/)
+[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0072FF?style=for-the-badge&logo=shield)](https://github.com/)
+[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1F1C2C?style=for-the-badge&logo=target)](https://github.com/)
+[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-00C9A7?style=for-the-badge&logo=gitbook)](https://github.com/)
 
 **Hands-on Security Operations, Detection Engineering & Incident Response**
 
 </div>
 
+---
+
+## 📖 Introduction
+
+This repository is a hands-on Security Operations Center (SOC) Lab Portfolio built to demonstrate practical, job-ready skills in security monitoring, threat detection, incident response, and digital forensics. Each lab is documented using a consistent, professional investigation-report format that mirrors real-world SOC analyst workflows — from initial alert triage through to findings, MITRE ATT&CK mapping, and lessons learned.
+
+This portfolio was created to:
+* Demonstrate applied, hands-on SOC analyst skills to recruiters and hiring managers.
+* Provide evidence of structured, repeatable investigation methodology.
+* Build a reusable personal knowledge base for interview preparation.
+* Track continuous learning across core SOC domains.
 ---
 
 # 🛡️ SOC Analyst Lab Portfolio
