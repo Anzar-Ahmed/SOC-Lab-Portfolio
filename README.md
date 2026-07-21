@@ -1,7 +1,17 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0f172a,100:1d4ed8&height=220&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=e2e8f0&animation=fadeIn&fontAlignY=45&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=93c5fd&descAlignY=70" width="100%" />
-<br/>
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=60A5FA&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+
+<img src="https://capsule-render.vercel.app/api?type=cylinder&color=0:0f172a,50:1e3a8a,100:0ea5e9&height=230&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=f8fafc&animation=fadeIn&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=7dd3fc&descAlignY=65" width="100%" />
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2500&pause=1000&color=38BDF8&center=true&vCenter=true&width=750&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+
+<br/><br/>
+
+<img src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" />
+<img src="https://img.shields.io/badge/Wazuh-1E90FF?style=for-the-badge&logo=wazuh&logoColor=white" />
+<img src="https://img.shields.io/badge/Suricata-CC0000?style=for-the-badge&logo=suricata&logoColor=white" />
+<img src="https://img.shields.io/badge/MITRE_ATT%26CK-red?style=for-the-badge&logo=mitre&logoColor=white" />
+<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
+
 </div>
 ---
 
