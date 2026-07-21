@@ -1,14 +1,18 @@
 <div align="center">
 
-# 🛡️ SOC Analyst Lab Portfolio
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e1b4b,100:311042&height=220&section=header&text=🛡️%20SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=00ffcc&animation=twinkling&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20Digital%20Forensics&descFontSize=16&descColor=a5b4fc" width="100%" />
 
-![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00FF66&center=true&vcenter=true&width=750&height=70&lines=Threat+Detection+%7C+Incident+Response;SIEM+Logging+%7C+Digital+Forensics;Hands-on+Security+Operations+%26+Triage)
+<br/>
 
-[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0072FF?style=for-the-badge&logo=shield)](https://github.com/)
-[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1F1C2C?style=for-the-badge&logo=target)](https://github.com/)
-[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-00C9A7?style=for-the-badge&logo=gitbook)](https://github.com/)
+[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0f172a?style=for-the-badge&logo=shield&logoColor=00ffcc)](https://github.com/Anzar-Ahmed)
+[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1e1b4b?style=for-the-badge&logo=target&logoColor=00ffcc)](https://github.com/Anzar-Ahmed)
+[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-065f46?style=for-the-badge&logo=gitbook&logoColor=34d399)](https://github.com/Anzar-Ahmed)
 
-**Hands-on Security Operations, Detection Engineering & Incident Response**
+<br/>
+
+### 🎯 *Hands-on Security Operations, Detection Engineering & Incident Response*
+
+---
 
 </div>
 
