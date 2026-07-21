@@ -2,7 +2,7 @@
 
 # 🛡️ SOC Analyst Lab Portfolio
 
-![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=00F2FE&center=true&vcenter=true&width=600&height=70&lines=SOC+Analyst+Lab+Portfolio;Threat+Detection+%26+Incident+Response;SIEM%2C+Digital+Forensics+%26+Triage)
+![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00F2FE&center=true&vcenter=true&width=750&height=70&lines=Threat+Detection+%7C+Incident+Response;SIEM+Logging+%7C+Digital+Forensics;Hands-on+Security+Operations+%26+Triage)
 
 [![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0072FF?style=for-the-badge&logo=shield)](https://github.com/)
 [![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1F1C2C?style=for-the-badge&logo=target)](https://github.com/)
@@ -16,94 +16,96 @@
 
 ## 📖 Introduction
 
-This repository is a hands-on Security Operations Center (SOC) Lab Portfolio built to demonstrate practical, job-ready skills in security monitoring, threat detection, incident response, and digital forensics. Each lab is documented using a consistent, professional investigation-report format that mirrors real-world SOC analyst workflows — from initial alert triage through to findings, MITRE ATT&CK mapping, and lessons learned.
+This repository is a hands-on Security Operations Center (SOC) Lab Portfolio designed to demonstrate practical, job-ready skills in security monitoring, threat detection, incident response, and digital forensics.
 
-This portfolio was created to:
-* Demonstrate applied, hands-on SOC analyst skills to recruiters and hiring managers.
-* Provide evidence of structured, repeatable investigation methodology.
-* Build a reusable personal knowledge base for interview preparation.
-* Track continuous learning across core SOC domains.
+Each lab is documented using a structured investigation-report format aligned with real-world SOC workflows — covering the full lifecycle:
+
+<p align="center">
+  <code><b>Alert</b></code> ➔ <code><b>Triage</b></code> ➔ <code><b>Investigation</b></code> ➔ <code><b>Analysis</b></code> ➔ <code><b>MITRE ATT&CK Mapping</b></code> ➔ <code><b>Reporting</b></code> ➔ <code><b>Lessons Learned</b></code>
+</p>
+
+> This portfolio emphasizes not just tool usage, but the development of a strong analytical mindset, detection logic, and incident investigation skills required in modern SOC environments.
+
 ---
 
-# 🛡️ SOC Analyst Lab Portfolio
+## 🎯 Objectives
 
-## 📖 Introduction
-
-This repository is a hands-on **Security Operations Center (SOC) Lab Portfolio** built to demonstrate practical, job-ready skills in security monitoring, threat detection, incident response, and digital forensics. Each lab is documented using a consistent, professional investigation-report format that mirrors real-world SOC analyst workflows — from initial alert triage through to findings, MITRE ATT&CK mapping, and lessons learned.
-
-This portfolio was created to:
-- Demonstrate applied, hands-on SOC analyst skills to recruiters and hiring managers
-- Provide evidence of structured, repeatable investigation methodology
-- Build a reusable personal knowledge base for interview preparation
-- Track continuous learning across core SOC domains
+* **Demonstrate hands-on SOC analyst capabilities** to recruiters and hiring managers.
+* **Provide evidence** of a structured, repeatable investigation methodology.
+* **Showcase real-world SIEM**, detection engineering, and IR workflows.
+* **Build a personal knowledge base** for interview preparation.
+* **Track continuous learning** across core SOC domains.
 
 ---
 
 ## 📂 Labs Included
 
-| # | Lab | Domain | Status |
-|---|-----|--------|--------|
-| 01 | [Phishing Analysis Lab](./templates/01-Phishing-Analysis-Lab.md) | Email Security / Phishing Triage | 🔲 Not Started |
-| 02 | [Endpoint Security Monitoring Lab](./templates/02-Endpoint-Security-Monitoring-Lab.md) | EDR / Endpoint Telemetry | 🔲 Not Started |
-| 03 | [SIEM Analysis Lab (Splunk / ELK)](./templates/03-SIEM-Analysis-Lab.md) | Log Analysis / Detection Engineering | 🔲 Not Started |
-| 04 | [Threat Intelligence Lab](./templates/04-Threat-Intelligence-Lab.md) | CTI / IOC Enrichment | 🔲 Not Started |
-| 05 | [Digital Forensics Lab](./templates/05-Digital-Forensics-Lab.md) | DFIR / Artifact Analysis | 🔲 Not Started |
-| 06 | [Incident Response Lab](./templates/06-Incident-Response-Lab.md) | IR Lifecycle / Containment & Eradication | 🔲 Not Started |
+| # | Lab Domain | Focus / Area | Status |
+| :-: | :--- | :--- | :-: |
+| **01** | Phishing Analysis Lab | Email Security / Phishing Triage | 🟡 In Progress |
+| **02** | Endpoint Security Monitoring Lab | EDR / Endpoint Telemetry | 🔲 Not Started |
+| **03** | SIEM Analysis Lab (Splunk / ELK) | Log Analysis / Detection Engineering | 🔲 Not Started |
+| **04** | Threat Intelligence Lab | CTI / IOC Enrichment | 🔲 Not Started |
+| **05** | Digital Forensics Lab | DFIR / Artifact Analysis | 🔲 Not Started |
+| **06** | Incident Response Lab | IR Lifecycle / Containment & Eradication | 🔲 Not Started |
 
-> Update the **Status** column as each lab is completed (e.g. 🔲 Not Started → 🟡 In Progress → ✅ Completed).
+> **Status Key:** 🔲 *Not Started* &nbsp;|&nbsp; 🟡 *In Progress* &nbsp;|&nbsp; ✅ *Completed*
 
 ---
 
-## 🧰 Tools & Technologies Used Across This Portfolio
+## 🧰 Tools & Technologies
 
-| Category | Tools |
-|---|---|
-| SIEM / Log Analysis | Splunk, Elastic Stack (ELK), Wazuh |
-| Endpoint Security / EDR | Sysmon, Windows Event Viewer, LimaCharlie / EDR sandbox |
-| Threat Intelligence | VirusTotal, AbuseIPDB, MITRE ATT&CK Navigator, AlienVault OTX, urlscan.io |
-| Phishing Analysis | Any.Run, PhishTool, MXToolbox, Email header analyzers |
-| Digital Forensics | Autopsy, FTK Imager, Volatility, KAPE |
-| Network Analysis | Wireshark, tcpdump, Zeek |
-| Sandboxing / Malware Analysis | Any.Run, Hybrid Analysis, Cuckoo Sandbox |
-| Incident Response Frameworks | NIST SP 800-61, SANS PICERL Model |
-| Documentation | Markdown, GitHub, draw.io (for diagrams) |
-
-*(Update this list to reflect the actual tools used in your completed labs.)*
+| Category | Tools / Technologies Used |
+| :--- | :--- |
+| **🔍 SIEM & Log Analysis** | Splunk, Elastic Stack (ELK), Wazuh |
+| **🖥️ Endpoint Security / EDR** | Sysmon, Windows Event Viewer, LimaCharlie |
+| **🌐 Network Analysis** | Wireshark, tcpdump, Zeek |
+| **🧠 Threat Intelligence** | VirusTotal, AbuseIPDB, MITRE ATT&CK, AlienVault OTX, urlscan.io |
+| **📧 Phishing Analysis** | Any.Run, PhishTool, MXToolbox, Email Header Analysis |
+| **🧪 Digital Forensics** | Autopsy, FTK Imager, Volatility, KAPE |
+| **🧬 Malware Sandboxing** | Any.Run, Hybrid Analysis, Cuckoo Sandbox |
+| **🚨 IR Frameworks** | NIST SP 800-61, SANS PICERL |
+| **📝 Documentation** | Markdown, GitHub, draw.io |
 
 ---
 
 ## 🎯 Purpose of This Portfolio
 
-This repository was built as part of an active job search for **SOC Analyst / Security Analyst (Tier 1–2)** roles. Its purpose is to:
+This repository is built as part of an active job search for **SOC Analyst / Security Analyst (Tier 1–2)** roles.
 
-1. Provide tangible, reviewable proof of hands-on detection and investigation skills
-2. Show structured analytical thinking and clear technical communication
-3. Bridge the gap between certification knowledge (Security+, CySA+, SC-200, etc.) and real-world SOC workflows
-4. Give interviewers concrete talking points to discuss during technical interviews
+It is designed to:
+1. Provide tangible proof of hands-on detection and investigation skills.
+2. Demonstrate analytical thinking and structured problem-solving.
+3. Bridge the gap between certifications and real-world SOC operations.
+4. Give recruiters and interviewers practical scenarios to evaluate skills.
 
 ---
 
 ## 💡 Skills Demonstrated
 
-- **Alert Triage & Investigation** — Systematic analysis of security alerts using a repeatable methodology
-- **Log Analysis & Correlation** — Querying and correlating logs across SIEM platforms
-- **Threat Intelligence Enrichment** — Validating and contextualizing Indicators of Compromise (IOCs)
-- **Phishing Email Analysis** — Header analysis, URL/attachment inspection, and sandbox detonation
-- **Endpoint Monitoring** — Identifying suspicious process, registry, and network activity
-- **Digital Forensics** — Disk, memory, and artifact analysis to reconstruct attacker activity
-- **Incident Response** — Applying structured IR frameworks (Preparation → Lessons Learned)
-- **MITRE ATT&CK Mapping** — Translating observed behavior into adversary tactics and techniques
-- **Technical Documentation** — Writing clear, audience-appropriate SOC investigation reports
+* **Alert Triage & Investigation:** Systematic analysis using SOC methodology.
+* **Log Analysis & Correlation:** SIEM-based detection and event linking.
+* **Threat Intelligence Enrichment:** IOC validation and contextualization.
+* **Phishing Analysis:** Email header, URL, and attachment analysis.
+* **Endpoint Monitoring:** Process, registry, and system activity analysis.
+* **Digital Forensics (DFIR):** Disk, memory, and artifact investigation.
+* **Incident Response:** Applying structured IR frameworks.
+* **MITRE ATT&CK Mapping:** Mapping attacker behavior to TTPs.
+* **Technical Reporting:** Writing clear, executive SOC investigation reports.
 
 ---
 
 ## 🗂️ Repository Structure
 
-```
+```text
 SOC-Lab-Portfolio/
-│
-├── README.md                                  # This file
-│
+├── README.md
+├── 01-Phishing-Analysis/
+├── 02-Endpoint-Monitoring/
+├── 03-SIEM-Detection/
+├── 04-Threat-Intelligence/
+├── 05-Digital-Forensics/
+├── 06-Incident-Response/
 └── templates/
     ├── 01-Phishing-Analysis-Lab.md
     ├── 02-Endpoint-Security-Monitoring-Lab.md
@@ -111,22 +113,3 @@ SOC-Lab-Portfolio/
     ├── 04-Threat-Intelligence-Lab.md
     ├── 05-Digital-Forensics-Lab.md
     └── 06-Incident-Response-Lab.md
-```
-
-> Tip: When you complete a lab, consider creating a dedicated folder per lab (e.g. `01-Phishing-Analysis/`) containing the filled-in `.md` report plus a `screenshots/` subfolder for evidence images.
-
----
-
-## 👤 Author
-
-**ANZAR AHMED**
-Aspiring SOC Analyst | [Relevant Certifications, e.g. CompTIA Security+, CySA+]
-
-- 🔗 LinkedIn: [your-linkedin-url]
-- 💻 GitHub: [your-github-url]
-- 📧 Email: [your-email@example.com]
-- 📄 Resume: [link to resume, optional]
-
----
-
-*This portfolio is a living document and will be updated as new labs are completed.*
