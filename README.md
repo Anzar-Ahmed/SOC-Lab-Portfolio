@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e1b4b,100:311042&height=220&section=header&text=🛡️%20SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=00ffcc&animation=twinkling&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20Digital%20Forensics&descFontSize=16&descColor=a5b4fc" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:161b22&height=200&section=header&text=🛡️%20SOC%20Analyst%20Lab%20Portfolio&fontSize=34&fontColor=00f2fe&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20Digital%20Forensics&descFontSize=15&descColor=ffffff" width="100%" />
 
 <br/>
 
-[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0f172a?style=for-the-badge&logo=shield&logoColor=00ffcc)](https://github.com/Anzar-Ahmed)
-[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1e1b4b?style=for-the-badge&logo=target&logoColor=00ffcc)](https://github.com/Anzar-Ahmed)
-[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-065f46?style=for-the-badge&logo=gitbook&logoColor=34d399)](https://github.com/Anzar-Ahmed)
+[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-00f2fe?style=for-the-badge&logo=shield&logoColor=000000&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
+[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-00f2fe?style=for-the-badge&logo=target&logoColor=000000&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
+[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-00c9a7?style=for-the-badge&logo=gitbook&logoColor=ffffff&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
 
 <br/>
 
@@ -15,7 +15,6 @@
 ---
 
 </div>
-
 ---
 
 ## 📖 Introduction
