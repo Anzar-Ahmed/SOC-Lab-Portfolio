@@ -6,11 +6,11 @@
 
 <br/><br/>
 
-<img src="https://img.shields.io/badge/Splunk-0F172A?style=for-the-badge&logo=splunk&logoColor=38BDF8" />
-<img src="https://img.shields.io/badge/Wazuh-0F172A?style=for-the-badge&logo=wazuh&logoColor=38BDF8" />
-<img src="https://img.shields.io/badge/Suricata-0F172A?style=for-the-badge&logo=suricata&logoColor=38BDF8" />
-<img src="https://img.shields.io/badge/MITRE_ATT%26CK-0F172A?style=for-the-badge&logo=mitre&logoColor=38BDF8" />
-<img src="https://img.shields.io/badge/Linux-0F172A?style=for-the-badge&logo=linux&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" />
+<img src="https://img.shields.io/badge/Wazuh-1565C0?style=for-the-badge&logo=wazuh&logoColor=white" />
+<img src="https://img.shields.io/badge/Suricata-C8102E?style=for-the-badge&logo=suricata&logoColor=white" />
+<img src="https://img.shields.io/badge/MITRE_ATT%26CK-6D28D9?style=for-the-badge&logo=mitre&logoColor=white" />
+<img src="https://img.shields.io/badge/Linux-F5C518?style=for-the-badge&logo=linux&logoColor=black" />
 
 </div>
 ---
