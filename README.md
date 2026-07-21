@@ -2,7 +2,7 @@
 
 # 🛡️ SOC Analyst Lab Portfolio
 
-![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00F2FE&center=true&vcenter=true&width=750&height=70&lines=Threat+Detection+%7C+Incident+Response;SIEM+Logging+%7C+Digital+Forensics;Hands-on+Security+Operations+%26+Triage)
+![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=00FF66&center=true&vcenter=true&width=750&height=70&lines=Threat+Detection+%7C+Incident+Response;SIEM+Logging+%7C+Digital+Forensics;Hands-on+Security+Operations+%26+Triage)
 
 [![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-0072FF?style=for-the-badge&logo=shield)](https://github.com/)
 [![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-1F1C2C?style=for-the-badge&logo=target)](https://github.com/)
