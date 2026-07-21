@@ -2,13 +2,13 @@
 
 # 🛡️ SOC Analyst Lab Portfolio
 
-![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=928DAB&center=true&vcenter=true&width=600&height=70&lines=Phishing+Email+Triage+%26+Analysis;Incident+Response+%26+Threat+Triage)
+![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=928DAB&center=true&vcenter=true&width=600&height=70&lines=SOC+Analyst+Lab+Portfolio;Threat+Detection+%26+Incident+Response;SIEM%2C+Digital+Forensics+%26+Triage)
 
-[![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20SOC%20Operations-purple?style=for-the-badge)](https://github.com/)
-[![Status](https://img.shields.io/badge/Status-Complete-success?style=for-the-badge)](https://github.com/)
-[![Focus](https://img.shields.io/badge/Focus-Attachment%20Extraction%20%26%20IOCs-blueviolet?style=for-the-badge)](https://github.com/)
+[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-purple?style=for-the-badge)](https://github.com/)
+[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-blueviolet?style=for-the-badge)](https://github.com/)
+[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-success?style=for-the-badge)](https://github.com/)
 
-**Part of SOC Analyst Portfolio → Incident Response & Threat Triage**
+**Hands-on Security Operations, Detection Engineering & Incident Response**
 
 </div>
 
