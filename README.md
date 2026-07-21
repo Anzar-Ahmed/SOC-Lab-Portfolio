@@ -1,21 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:161b22&height=200&section=header&text=🛡️%20SOC%20Analyst%20Lab%20Portfolio&fontSize=34&fontColor=00f2fe&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20Digital%20Forensics&descFontSize=15&descColor=ffffff" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=SOC%20Analyst%20Portfolio&fontSize=38&fontColor=00e6ff&animation=fadeIn&fontAlignY=35&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response&descSize=16&descAlignY=55" width="100%" />
 
 <br/>
 
-[![Domain](https://img.shields.io/badge/Domain-Cybersecurity%20%7C%20Blue%20Teaming-00f2fe?style=for-the-badge&logo=shield&logoColor=000000&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
-[![Focus](https://img.shields.io/badge/Focus-Threat%20Hunting%20%26%20SIEM-00f2fe?style=for-the-badge&logo=target&logoColor=000000&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
-[![Status](https://img.shields.io/badge/Status-Active%20Lab%20Environment-00c9a7?style=for-the-badge&logo=gitbook&logoColor=ffffff&labelColor=0d1117)](https://github.com/Anzar-Ahmed)
-
-<br/>
-
-### 🎯 *Hands-on Security Operations, Detection Engineering & Incident Response*
-
----
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00F2FE&center=true&vCenter=true&width=600&lines=Security+Monitoring+%7C+Log+Analysis;Threat+Hunting+%7C+MITRE+ATT%26CK;SOC+Investigation+Workflows" />
 
 </div>
----
 
 ## 📖 Introduction
 
