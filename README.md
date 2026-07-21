@@ -1,7 +1,7 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0f172a,100:1d4ed8&height=220&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=e2e8f0&animation=fadeIn&fontAlignY=45&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=93c5fd&descAlignY=70" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:000000,100:022c22&height=220&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=4ade80&animation=fadeIn&fontAlignY=45&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=22c55e&descAlignY=70" width="100%" />
 <br/>
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=60A5FA&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=4ADE80&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
 </div>
 ---
 
