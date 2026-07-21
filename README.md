@@ -1,12 +1,13 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d1117,50:1f1c2c,100:00f2fe&height=250&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=00f2fe&animation=fadeIn&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descAlignY=65" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0b132b,50:1c2541,100:00c6ff&height=230&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=e0fbfc&animation=fadeIn&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response&descSize=16&descColor=cdeffd" width="100%" />
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00F2FE&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00C6FF&center=true&vCenter=true&width=650&lines=Security+Monitoring+%7C+Log+Analysis;Threat+Hunting+%7C+MITRE+ATT%26CK;SOC+Investigation+Workflows" />
 
 </div>
+
 
 
 ---
