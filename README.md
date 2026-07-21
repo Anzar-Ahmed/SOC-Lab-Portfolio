@@ -1,18 +1,18 @@
-<p align="center"> 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Phishing%20Email%20Triage%20%26%20Analysis&fontSize=32&fontColor=ffffff" /> 
-</p> 
+<div align="center">
 
-<p align="center"> 
-  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20SOC%20Operations-purple?style=for-the-badge"> 
-  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
-  <img src="https://img.shields.io/badge/Focus-Attachment%20Extraction%20%26%20IOCs-blueviolet?style=for-the-badge"> 
-</p> 
+# 🛡️ SOC Analyst Lab Portfolio
 
-<p align="center"> 
-  <b>Part of SOC Analyst Portfolio → Incident Response & Threat Triage</b> 
-</p>
+![Header](https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=928DAB&center=true&vcenter=true&width=600&height=70&lines=Phishing+Email+Triage+%26+Analysis;Incident+Response+%26+Threat+Triage)
 
+[![Category](https://img.shields.io/badge/Category-Email%20Security%20%7C%20SOC%20Operations-purple?style=for-the-badge)](https://github.com/)
+[![Status](https://img.shields.io/badge/Status-Complete-success?style=for-the-badge)](https://github.com/)
+[![Focus](https://img.shields.io/badge/Focus-Attachment%20Extraction%20%26%20IOCs-blueviolet?style=for-the-badge)](https://github.com/)
 
+**Part of SOC Analyst Portfolio → Incident Response & Threat Triage**
+
+</div>
+
+---
 
 # 🛡️ SOC Analyst Lab Portfolio
 
