@@ -29,7 +29,7 @@
 
 | # | Lab Domain | Focus / Area | Status |
 | :-: | :--- | :--- | :-: |
-| **01** | Phishing Analysis Lab | Email Security / Phishing Triage | 🟡 In Progress |
+| **01** | Phishing Analysis Lab | Email Security / Phishing Triage | ✅ Completed |
 | **02** | Endpoint Security Monitoring Lab | EDR / Endpoint Telemetry | 🔲 Not Started |
 | **03** | SIEM Analysis Lab (Splunk / ELK) | Log Analysis / Detection Engineering | 🔲 Not Started |
 | **04** | Threat Intelligence Lab | CTI / IOC Enrichment | 🔲 Not Started |
