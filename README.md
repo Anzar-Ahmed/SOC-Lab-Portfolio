@@ -1,3 +1,19 @@
+<p align="center"> 
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f1c2c,100:928dab&height=200&section=header&text=Phishing%20Email%20Triage%20%26%20Analysis&fontSize=32&fontColor=ffffff" /> 
+</p> 
+
+<p align="center"> 
+  <img src="https://img.shields.io/badge/Category-Email%20Security%20%7C%20SOC%20Operations-purple?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge"> 
+  <img src="https://img.shields.io/badge/Focus-Attachment%20Extraction%20%26%20IOCs-blueviolet?style=for-the-badge"> 
+</p> 
+
+<p align="center"> 
+  <b>Part of SOC Analyst Portfolio → Incident Response & Threat Triage</b> 
+</p>
+
+
+
 # 🛡️ SOC Analyst Lab Portfolio
 
 ## 📖 Introduction
