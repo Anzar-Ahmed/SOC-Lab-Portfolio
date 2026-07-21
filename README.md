@@ -1,14 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0b132b,50:1c2541,100:00c6ff&height=230&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=38&fontColor=e0fbfc&animation=fadeIn&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response&descSize=16&descColor=cdeffd" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:0a0a0a,100:007cf0&height=230&section=header&text=SOC%20Analyst%20Portfolio&fontSize=40&fontColor=00e6ff&animation=fadeIn&desc=Blue%20Team%20%7C%20Threat%20Detection%20%7C%20DFIR&descSize=16&descColor=9be7ff" width="100%" />
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00C6FF&center=true&vCenter=true&width=650&lines=Security+Monitoring+%7C+Log+Analysis;Threat+Hunting+%7C+MITRE+ATT%26CK;SOC+Investigation+Workflows" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00E6FF&center=true&vCenter=true&width=650&lines=Real-World+SOC+Labs;Detection+Engineering;Incident+Response+Skills" />
 
 </div>
-
-
 
 ---
 
