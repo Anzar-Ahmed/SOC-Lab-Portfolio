@@ -1,14 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d1117,50:161b22,100:2f80ed&height=250&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=40&fontColor=e6f1ff&animation=fadeIn&fontAlignY=40&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=16&descColor=bcd4ff&descAlignY=65" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=venom&color=0:020617,50:0f172a,100:1e3a8a&height=250&section=header&text=SOC%20Analyst%20Lab%20Portfolio&fontSize=42&fontColor=f8fafc&animation=fadeIn&fontAlignY=38&desc=Detection%20Engineering%20%7C%20SIEM%20%7C%20Incident%20Response%20%7C%20DFIR&descSize=17&descColor=93c5fd&descAlignY=65" width="100%" />
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=2F80ED&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=60A5FA&center=true&vCenter=true&width=700&lines=Real-World+SOC+Investigations;MITRE+ATT%26CK+Mapping;Hands-on+Security+Labs;Blue+Team+Skill+Development" />
 
 </div>
-
-
 ---
 
 ## 🎯 Objectives
