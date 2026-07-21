@@ -6,14 +6,15 @@
 
 <br/><br/>
 
-<img src="https://img.shields.io/badge/Splunk-000000?style=for-the-badge&logo=splunk&logoColor=white" />
-<img src="https://img.shields.io/badge/Wazuh-1E90FF?style=for-the-badge&logo=wazuh&logoColor=white" />
-<img src="https://img.shields.io/badge/Suricata-CC0000?style=for-the-badge&logo=suricata&logoColor=white" />
-<img src="https://img.shields.io/badge/MITRE_ATT%26CK-red?style=for-the-badge&logo=mitre&logoColor=white" />
-<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
+<img src="https://img.shields.io/badge/Splunk-0F172A?style=for-the-badge&logo=splunk&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/Wazuh-0F172A?style=for-the-badge&logo=wazuh&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/Suricata-0F172A?style=for-the-badge&logo=suricata&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/MITRE_ATT%26CK-0F172A?style=for-the-badge&logo=mitre&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/Linux-0F172A?style=for-the-badge&logo=linux&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/VirtualBox-0F172A?style=for-the-badge&logo=virtualbox&logoColor=38BDF8" />
+<img src="https://img.shields.io/badge/Docker-0F172A?style=for-the-badge&logo=docker&logoColor=38BDF8" />
 
 </div>
-
 ---
 
 ## 🎯 Objectives
