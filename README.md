@@ -1,24 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=SOC%20Analyst%20Portfolio&fontSize=38&fontColor=00e6ff&animation=fadeIn&fontAlignY=35&desc=Threat%20Detection%20%7C%20SIEM%20%7C%20Incident%20Response&descSize=16&descAlignY=55" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,50:0f2027,100:00f2fe&height=240&section=header&text=🛡️%20SOC%20Analyst&fontSize=42&fontColor=00f2fe&animation=twinkling&fontAlignY=35&desc=Blue%20Team%20%7C%20Threat%20Detection%20%7C%20DFIR&descSize=18&descAlignY=60" width="100%" />
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=1000&color=00F2FE&center=true&vCenter=true&width=600&lines=Security+Monitoring+%7C+Log+Analysis;Threat+Hunting+%7C+MITRE+ATT%26CK;SOC+Investigation+Workflows" />
+<img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=22&duration=2000&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Analyzing+Logs+Like+a+SOC+Analyst;Detecting+Threats+in+Real-Time;Turning+Alerts+into+Investigations" />
 
 </div>
-
-## 📖 Introduction
-
-This repository is a hands-on Security Operations Center (SOC) Lab Portfolio designed to demonstrate practical, job-ready skills in security monitoring, threat detection, incident response, and digital forensics.
-
-Each lab is documented using a structured investigation-report format aligned with real-world SOC workflows — covering the full lifecycle:
-
-<p align="center">
-  <code><b>Alert</b></code> ➔ <code><b>Triage</b></code> ➔ <code><b>Investigation</b></code> ➔ <code><b>Analysis</b></code> ➔ <code><b>MITRE ATT&CK Mapping</b></code> ➔ <code><b>Reporting</b></code> ➔ <code><b>Lessons Learned</b></code>
-</p>
-
-> This portfolio emphasizes not just tool usage, but the development of a strong analytical mindset, detection logic, and incident investigation skills required in modern SOC environments.
 
 ---
 
