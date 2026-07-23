@@ -47,4 +47,15 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
   * **Capabilities:** Executes **SPL Queries**, triggers automated **Alerts**, and visualizes threat indicators on custom **Dashboards**.
 
 ---
+## 🛠️ Tools & Technologies
+
+| Tool | Purpose |
+| :--- | :--- |
+| **Splunk Enterprise** | SIEM — log ingestion, search, alerting |
+| **Sysmon v15.15** | Deep Windows process/network monitoring |
+| **Kali Linux** | Attacker machine for attack simulation |
+| **Hydra** | Brute force attack tool |
+| **Windows 10** | Victim/target machine |
+| **SwiftOnSecurity Sysmon Config** | Optimized Sysmon detection ruleset |
+
 ---
