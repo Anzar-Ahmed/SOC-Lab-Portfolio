@@ -20,3 +20,21 @@
 This project demonstrates an end-to-end Security Operations Center (SOC) workflow simulated in a dedicated lab environment. Using **Splunk Enterprise** as the central SIEM, **Sysmon** for fine-grained endpoint visibility, and **Kali Linux** as the attack platform, I executed realistic cyber threat scenarios to analyze host and network telemetry.
 
 Through custom **SPL (Search Processing Language)** queries, I engineered targeted detection rules to capture malicious activity and mapped all identified indicators of compromise (IOCs) directly to the **MITRE ATT&CK Framework**. This project reflects real-world Tier 1 and Tier 2 SOC Analyst operations, focusing on alert triage, forensic log analysis, and threat detection engineering.
+
+## 🏗️ Lab Architecture
+
+<p align="center">
+  <!-- Apni image ka path ya URL niche "src" mein paste karein -->
+  <img src="YOUR_IMAGE_URL_HERE.png" alt="Lab Architecture Diagram" width="100%" />
+</p>
+
+> **Architecture Flow:**
+> **Kali Linux** *(Attacker)* ──> **Windows Endpoint + Sysmon** *(Victim)* ──> **Splunk Universal Forwarder** ──> **Splunk Enterprise** *(SIEM)*
+
+### ⚙️ Component Breakdown:
+* **Attacker Machine:** Kali Linux *(Emulating real-world attacks & exploit execution)*
+* **Target / Victim Host:** Windows 10/11 with **Sysmon** installed for granular event log generation
+* **Log Shipper:** Splunk Universal Forwarder *(Routing endpoint telemetry to SIEM)*
+* **SIEM Engine:** Splunk Enterprise *(Log indexing, SPL search, alert rule creation & dashboarding)*
+
+---
