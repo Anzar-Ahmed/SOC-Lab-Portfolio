@@ -24,17 +24,27 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ## 🏗️ Lab Architecture
 
 <p align="center">
-  <!-- Apni image ka path ya URL niche "src" mein paste karein -->
-  <img src="YOUR_IMAGE_URL_HERE.png" alt="Lab Architecture Diagram" width="100%" />
+  <img src="Architecture.png" alt="SOC Lab Architecture Diagram" width="80%" />
 </p>
 
-> **Architecture Flow:**
-> **Kali Linux** *(Attacker)* ──> **Windows Endpoint + Sysmon** *(Victim)* ──> **Splunk Universal Forwarder** ──> **Splunk Enterprise** *(SIEM)*
+> **Telemetry Flow:**  
+> **Kali Linux VM** *(Attacker)* ──`Hydra Attack`──> **Windows 10 VM** *(Victim)* ──`Sysmon & Security Logs`──> **Splunk Universal Forwarder** ──`Port 9997`──> **Ubuntu VM** *(Splunk SIEM)*
+
+---
 
 ### ⚙️ Component Breakdown:
-* **Attacker Machine:** Kali Linux *(Emulating real-world attacks & exploit execution)*
-* **Target / Victim Host:** Windows 10/11 with **Sysmon** installed for granular event log generation
-* **Log Shipper:** Splunk Universal Forwarder *(Routing endpoint telemetry to SIEM)*
-* **SIEM Engine:** Splunk Enterprise *(Log indexing, SPL search, alert rule creation & dashboarding)*
 
+* **⚔️ Attacker Node (Kali Linux VM):**
+  * **Role:** External adversary machine executing brute-force attacks via **Hydra**.
+
+* **🛡️ Target Endpoint (Windows 10 VM):**
+  * **Role:** Victim endpoint generating security events.
+  * **Telemetry Agents:** **Sysmon** (deep process & network tracking) + **Windows Security Event Logs**.
+  * **Log Forwarder:** **Splunk Universal Forwarder (UF)** routing raw telemetry over **Port 9997**.
+
+* **📊 SIEM Server (Ubuntu VM - Splunk Enterprise):**
+  * **Role:** Centralized SIEM engine indexing received endpoint telemetry.
+  * **Capabilities:** Executes **SPL Queries**, triggers automated **Alerts**, and visualizes threat indicators on custom **Dashboards**.
+
+---
 ---
