@@ -63,14 +63,6 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 #### 📝 Executive Summary
 During blue-team telemetry analysis, an anomalous volume of authentication failures was flagged originating from host `192.168.56.102`. Further forensic examination confirmed an automated SMB brute-force attack leveraging **Hydra** directed at account `testuser` on host `192.168.3.1`. The event stream was correlated via Splunk and mapped to **MITRE ATT&CK T1110**.
 
----
-
-### 🚨 Incident Case #01: SMB Authentication Flood (Brute Force)
-
-#### 📝 Executive Summary
-During blue-team telemetry analysis, an anomalous volume of authentication failures was flagged originating from host `192.168.56.102`. Further forensic examination confirmed an automated SMB brute-force attack leveraging **Hydra** directed at account `testuser` on host `192.168.3.1`. The event stream was correlated via Splunk and mapped to **MITRE ATT&CK T1110**.
-
----
 
 #### 🧪 Threat Emulation Phase
 * **Offensive Vector:** SMB Service Credential Spraying / Dictionary Attack
