@@ -101,3 +101,18 @@ index=main source="WinEventLog:Security" EventCode=4625
 | eval MITRE="T1110 - Brute Force"
 | table Account_Name, Source_Network_Address, count, Threat, MITRE
 ```
+
+#### 📌 Threat Intelligence Mapping
+
+| Framework | Technique ID | Technique Name | Tactic |
+| :--- | :--- | :--- | :--- |
+| **MITRE ATT&CK** | `T1110` | **Brute Force** | Credential Access |
+
+---
+
+#### 🔑 Key Findings & Triage Analysis
+
+* **High Volume Telemetry:** Ingested **19,059 failed logon events** (`EventCode 4625`) within a short timeframe.
+* **Adversary Identification:** Source IP `192.168.56.102` identified as the origin of the attack.
+* **Target Focus:** Local account `testuser` was targeted using automated wordlists (`rockyou.txt`).
+* **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
