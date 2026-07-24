@@ -78,18 +78,21 @@ During blue-team telemetry analysis, an anomalous volume of authentication failu
 * **Target Endpoint:** Windows Host (`192.168.3.1`)
 * **Target Account:** `testuser`
 
-## 🧪 Threat Emulation Phase
-
 ### ⚔️ Adversary Execution Command
+
 ```bash
 hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.3.1 smb -t 4 -V
+```
 
 ---
+
 ### 🛠️ **Splunk Detection Engineering (SPL)**
 
+```spl
 index=main source="WinEventLog:Security" EventCode=4625
 | stats count by Account_Name, Source_Network_Address
 | where count > 10
 | eval Threat="Brute Force Detected!"
 | eval MITRE="T1110 - Brute Force"
 | table Account_Name, Source_Network_Address, count, Threat, MITRE
+```
