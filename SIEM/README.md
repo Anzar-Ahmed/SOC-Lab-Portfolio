@@ -108,7 +108,6 @@ index=main source="WinEventLog:Security" EventCode=4625
 | :--- | :--- | :--- | :--- |
 | **MITRE ATT&CK** | `T1110` | **Brute Force** | Credential Access |
 
----
 
 #### 🔑 Key Findings & Triage Analysis
 
