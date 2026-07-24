@@ -25,7 +25,7 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ## 🏗️ Lab Architecture
 
 <p align="center">
-  <img src="Architecture.png" alt="SOC Lab Architecture Diagram" width="80%" />
+  <img src="01-Lab-Setup/Architecture.png" alt="SOC Lab Architecture Diagram" width="100%" />
 </p>
 
 > **Telemetry Flow:**  
