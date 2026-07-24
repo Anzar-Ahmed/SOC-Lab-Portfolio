@@ -48,14 +48,14 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 
 ## 🛠️ Tools & Technologies
 
-| Tool | Purpose |
-| :--- | :--- |
-| **Splunk Enterprise** | SIEM — log ingestion, search, alerting |
-| **Sysmon v15.15** | Deep Windows process/network monitoring |
-| **Kali Linux** | Attacker machine for attack simulation |
-| **Hydra** | Brute force attack tool |
-| **Windows 10** | Victim/target machine |
-| **SwiftOnSecurity Sysmon Config** | Optimized Sysmon detection ruleset |
+| Tool                               | Purpose                                         |
+|------------------------------------|-------------------------------------------------|
+| **Splunk Enterprise**              | SIEM — Log ingestion, search, and alerting     |
+| **Sysmon v15.15**                  | Advanced Windows process and network monitoring |
+| **Kali Linux**                     | Attack simulation platform                     |
+| **Hydra**                          | Password brute-force tool                      |
+| **Windows 10**                     | Target / victim machine                        |
+| **SwiftOnSecurity Sysmon Config**  | Optimized Sysmon configuration for detection   |
 
 ---
 
