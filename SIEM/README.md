@@ -24,11 +24,8 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 
 ## 🏗️ Lab Architecture
 <p align="center">
-  <img src="01-Lab-Setup/Architecture.png" alt="SOC Lab Architecture Diagram" width="85%" />
-  <br />
-  <sub><i>Figure 1.1: End-to-End Enterprise SOC Lab Telemetry & Ingestion Flow</i></sub>
+  <img src="/SIEM/Splunk%20SIEM%20Threat%20Detection%20Lab/01-Lab-Setup/Architecture.png" alt="Architecture" width="600"/>
 </p>
-
 
 > **Telemetry Flow:**  
 > **Kali Linux VM** *(Attacker)* ──`Hydra Attack`──> **Windows 10 VM** *(Victim)* ──`Sysmon & Security Logs`──> **Splunk Universal Forwarder** ──`Port 9997`──> **Ubuntu VM** *(Splunk SIEM)*
