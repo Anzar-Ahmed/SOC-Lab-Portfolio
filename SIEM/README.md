@@ -57,12 +57,22 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 | **SwiftOnSecurity Sysmon Config**  | Optimized Sysmon configuration for detection   |
 
 ---
+## ⚔️ Attacks Simulated
 
+### Attack 1 — SMB Brute Force (T1110)
+Credential brute-force attack against SMB service using Hydra to simulate unauthorized login attempts.
+
+### Attack 2 — Malicious PowerShell Execution with Encoded Command (T1059.001)
+Simulated suspicious PowerShell activity using encoded commands to replicate attacker obfuscation and stealth execution techniques.
+
+### Attack 3 — System & Network Enumeration (T1087, T1018)
+Performed Windows user and network discovery activities using native commands to simulate internal reconnaissance behavior.
 ### 🚨 Incident Case #01: SMB Authentication Flood (Brute Force)
 
 #### 📝 Executive Summary
 During blue-team telemetry analysis, an anomalous volume of authentication failures was flagged originating from host `192.168.56.102`. Further forensic examination confirmed an automated SMB brute-force attack leveraging **Hydra** directed at account `testuser` on host `192.168.3.1`. The event stream was correlated via Splunk and mapped to **MITRE ATT&CK T1110**.
 
+---
 
 #### 🧪 Threat Emulation Phase
 * **Offensive Vector:** SMB Service Credential Spraying / Dictionary Attack
