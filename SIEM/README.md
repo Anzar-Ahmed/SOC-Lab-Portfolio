@@ -65,6 +65,13 @@ During blue-team telemetry analysis, an anomalous volume of authentication failu
 
 ---
 
+### 🚨 Incident Case #01: SMB Authentication Flood (Brute Force)
+
+#### 📝 Executive Summary
+During blue-team telemetry analysis, an anomalous volume of authentication failures was flagged originating from host `192.168.56.102`. Further forensic examination confirmed an automated SMB brute-force attack leveraging **Hydra** directed at account `testuser` on host `192.168.3.1`. The event stream was correlated via Splunk and mapped to **MITRE ATT&CK T1110**.
+
+---
+
 #### 🧪 Threat Emulation Phase
 * **Offensive Vector:** SMB Service Credential Spraying / Dictionary Attack
 * **Execution Utility:** `Hydra`
@@ -75,7 +82,8 @@ During blue-team telemetry analysis, an anomalous volume of authentication failu
 # Adversary Execution Command
 hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.3.1 smb -t 4 -V
 
-🛠️**Splunk Detection Engineering (SPL)**
+🛠️ Splunk Detection Engineering (SPL)
+---
 index=main source="WinEventLog:Security" EventCode=4625
 | stats count by Account_Name, Source_Network_Address
 | where count > 10
