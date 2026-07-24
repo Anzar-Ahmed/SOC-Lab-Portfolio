@@ -67,6 +67,9 @@ Simulated suspicious PowerShell activity using encoded commands to replicate att
 
 ### Attack 3 — System & Network Enumeration (T1087, T1018)
 Performed Windows user and network discovery activities using native commands to simulate internal reconnaissance behavior.
+
+--
+
 ### 🚨 Incident Case #01: SMB Authentication Flood (Brute Force)
 
 #### 📝 Executive Summary
