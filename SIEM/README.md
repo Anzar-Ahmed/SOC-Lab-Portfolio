@@ -16,43 +16,32 @@
 
 ---
 📌 **Project Overview**
-
 This project demonstrates an end-to-end Security Operations Center (SOC) workflow simulated in a dedicated lab environment. Using **Splunk Enterprise** as the central SIEM, **Sysmon** for fine-grained endpoint visibility, and **Kali Linux** as the attack platform, I executed realistic cyber threat scenarios to analyze host and network telemetry.
 
 Through custom **SPL (Search Processing Language)** queries, I engineered targeted detection rules to capture malicious activity and mapped all identified indicators of compromise (IOCs) directly to the **MITRE ATT&CK Framework**. This project reflects real-world Tier 1 and Tier 2 SOC Analyst operations, focusing on alert triage, forensic log analysis, and threat detection engineering.
 
+---
+
 ## 🏗️ Lab Architecture
 
 <p align="center">
-
   <img src="Architecture.png" alt="SOC Lab Architecture Diagram" width="80%" />
-
 </p>
 
 > **Telemetry Flow:**  
-
 > **Kali Linux VM** *(Attacker)* ──`Hydra Attack`──> **Windows 10 VM** *(Victim)* ──`Sysmon & Security Logs`──> **Splunk Universal Forwarder** ──`Port 9997`──> **Ubuntu VM** *(Splunk SIEM)*
 
 ---
 
 ### ⚙️ Component Breakdown:
-
 * **⚔️ Attacker Node (Kali Linux VM):**
-
   * **Role:** External adversary machine executing brute-force attacks via **Hydra**.
-
 * **🛡️ Target Endpoint (Windows 10 VM):**
-
   * **Role:** Victim endpoint generating security events.
-
   * **Telemetry Agents:** **Sysmon** (deep process & network tracking) + **Windows Security Event Logs**.
-
   * **Log Forwarder:** **Splunk Universal Forwarder (UF)** routing raw telemetry over **Port 9997**.
-
 * **📊 SIEM Server (Ubuntu VM - Splunk Enterprise):**
-
   * **Role:** Centralized SIEM engine indexing received endpoint telemetry.
-
   * **Capabilities:** Executes **SPL Queries**, triggers automated **Alerts**, and visualizes threat indicators on custom **Dashboards**.
 
 ---
@@ -60,19 +49,12 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ## 🛠️ Tools & Technologies
 
 | Tool | Purpose |
-
 | :--- | :--- |
-
 | **Splunk Enterprise** | SIEM — log ingestion, search, alerting |
-
 | **Sysmon v15.15** | Deep Windows process/network monitoring |
-
 | **Kali Linux** | Attacker machine for attack simulation |
-
 | **Hydra** | Brute force attack tool |
-
 | **Windows 10** | Victim/target machine |
-
 | **SwiftOnSecurity Sysmon Config** | Optimized Sysmon detection ruleset |
 
 ---
@@ -80,38 +62,24 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ### 🚨 Incident Case #01: SMB Authentication Flood (Brute Force)
 
 #### 📝 Executive Summary
-
 During blue-team telemetry analysis, an anomalous volume of authentication failures was flagged originating from host `192.168.56.102`. Further forensic examination confirmed an automated SMB brute-force attack leveraging **Hydra** directed at account `testuser` on host `192.168.3.1`. The event stream was correlated via Splunk and mapped to **MITRE ATT&CK T1110**.
 
 ---
 
 #### 🧪 Threat Emulation Phase
-
 * **Offensive Vector:** SMB Service Credential Spraying / Dictionary Attack
-
 * **Execution Utility:** `Hydra`
-
 * **Target Endpoint:** Windows Host (`192.168.3.1`)
-
 * **Target Account:** `testuser`
 
 ```bash
-
 # Adversary Execution Command
-
 hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.3.1 smb -t 4 -V
 
+🛠️**Splunk Detection Engineering (SPL)**
 index=main source="WinEventLog:Security" EventCode=4625
-
 | stats count by Account_Name, Source_Network_Address
-
 | where count > 10
-
 | eval Threat="Brute Force Detected!"
-
 | eval MITRE="T1110 - Brute Force"
-
 | table Account_Name, Source_Network_Address, count, Threat, MITRE
-
-📌 Threat Intelligence AlignmentFrameworkIdentifierNamePhaseMITRE ATT&CKT1110Brute ForceCredential Access
-
