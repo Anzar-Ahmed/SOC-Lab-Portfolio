@@ -23,9 +23,10 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ---
 
 ## 🏗️ Lab Architecture
-
 <p align="center">
-  <img src="/SIEM/Splunk%20SIEM%20Threat%20Detection%20Lab/01-Lab-Setup/Architecture.png" alt="Architecture" width="600"/>
+  <img src="01-Lab-Setup/Architecture.png" alt="SOC Lab Architecture Diagram" width="85%" />
+  <br>
+  <sub><i>Figure 1.1: End-to-End Enterprise SOC Lab Telemetry & Ingestion Flow</i></sub>
 </p>
 
 > **Telemetry Flow:**  
