@@ -115,3 +115,27 @@ index=main source="WinEventLog:Security" EventCode=4625
 * **Adversary Identification:** Source IP `192.168.56.102` identified as the origin of the attack.
 * **Target Focus:** Local account `testuser` was targeted using automated wordlists (`rockyou.txt`).
 * **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
+
+
+🚨 Attack 2: Suspicious PowerShell Execution
+📌 What Happened
+
+After gaining initial access, the attacker executed suspicious PowerShell commands using multiple bypass techniques. 
+These flags are commonly used by malware and threat actors to evade detection and execute malicious scripts silently.
+
+
+💻 Attack Commands (Simulated Post-Exploitation)
+powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
+
+powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
+
+⚠️ Suspicious Flags & Fields Analysis
+| Flag / Field   | Meaning                    | Why It's Malicious / Suspicious                                       |
+| -------------- | -------------------------- | --------------------------------------------------------------------- |
+| `-nop`         | No Profile                 | Skips loading user/system profiles, bypassing security configurations |
+| `-exec bypass` | Bypass Execution Policy    | Allows execution of unsigned or restricted scripts                    |
+| `-w hidden`    | Hidden Window              | Runs PowerShell in a hidden window to evade user visibility           |
+| `IEX`          | Invoke Expression          | Executes dynamically generated or remote code directly in memory      |
+| `--ps2`        | Version/Custom Switch      | Can force specific PowerShell behavior or be used for evasion         |
+| `Hashes`       | File Hashes (SHA256 / MD5) | Used to match binaries with known malicious indicators (Threat Intel) |
+| `ParentImage`  | Parent Process Information | Helps identify suspicious process chains (e.g., Word → PowerShell)    |
