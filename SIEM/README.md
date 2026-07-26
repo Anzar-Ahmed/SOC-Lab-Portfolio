@@ -116,6 +116,14 @@ index=main source="WinEventLog:Security" EventCode=4625
 * **Target Focus:** Local account `testuser` was targeted using automated wordlists (`rockyou.txt`).
 * **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
 
+### **📋 Attack 2: Suspicious PowerShell Execution**
+
+**What Happened**
+
+After gaining initial access, the attacker executed suspicious PowerShell commands using bypass flags commonly used by malware and threat actors.
+
+---
+
 ### **💻 Attack Commands (Simulated Post-Exploitation)**
 
 The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
