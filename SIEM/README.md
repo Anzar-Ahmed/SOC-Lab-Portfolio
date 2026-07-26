@@ -118,20 +118,15 @@ index=main source="WinEventLog:Security" EventCode=4625
 
   ---
 
-### **📋 Attack 2: Suspicious PowerShell Execution**
+## 📋 Attack 2: Suspicious PowerShell Execution
 
-
-**What Happened**
+### What Happened
 
 After gaining initial access, the attacker executed suspicious PowerShell commands using bypass flags commonly used by malware and threat actors.
 
+### 💻 Attack Commands (Simulated Post-Exploitation)
 
-### **💻 Attack Commands (Simulated Post-Exploitation)**
-
-The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
-
-
-### Test Case 1: Execution Policy Bypass & Inline Execution
+**Test Case 1: Execution Policy Bypass & Inline Execution**
 
 ```powershell
 powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
@@ -141,7 +136,7 @@ powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
 - Simulates execution of PowerShell with policy bypass.
 - Used to test detection of suspicious PowerShell execution behavior.
 
-### Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
+**Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)**
 
 ```powershell
 powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
@@ -161,13 +156,58 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 | `-c` | `-Command` | Executes commands directly through PowerShell. |
 | `IEX` | `Invoke-Expression` | Executes dynamically generated PowerShell code in memory and is commonly abused for fileless attacks. |
 
-
-## Attack Chain Overview
-
-**Initial Access → Credential Access → Execution → Discovery**
 ---
 
-## Detection Logic
+## 📋 Attack 3: Reconnaissance & Discovery
+
+### What Happened
+
+After gaining access, the attacker ran system discovery commands to enumerate users, groups, and network connections — standard post-exploitation recon behavior.
+
+### 💻 Attack Commands (Simulating Attacker Recon)
+
+```cmd
+net user                        # List all user accounts
+net localgroup administrators   # List admin group members
+whoami /all                     # Current user privileges
+netstat -ano                    # Active network connections
+```
+
+### What Was Generated
+
+- 26 recon-related process creation events flagged out of 287 total `EventCode 4688` events captured.
+- Multiple suspicious processes logged (`net.exe`, `whoami.exe`, `netstat.exe`).
+- User and group enumeration activity recorded on target endpoint `192.168.1.7`.
+
+### 🛠️ Detection Query (SPL)
+
+```spl
+index=main source="WinEventLog:Security" EventCode=4688
+| eval Threat="Suspicious Reconnaissance!"
+| eval MITRE="T1087 - Account Discovery"
+| table _time, User, New_Process_Name, Threat, MITRE
+| head 10
+```
+
+### 📌 MITRE ATT&CK Mapping
+
+| Technique | ID | Tactic |
+|---|---|---|
+| Account Discovery | T1087 | Discovery |
+| System Network Connections Discovery | T1049 | Discovery |
+
+---
+
+## 🔗 Attack Chain Overview
+
+```
+Brute Force (T1110) ──▶ PowerShell Execution (T1059.001) ──▶ Account Discovery (T1087)
+                                                        └──▶ Network Discovery (T1049)
+```
+
+---
+
+## 🕵️ Detection Logic
 
 | Rule Name | Event Source | Detection Logic | MITRE ID |
 |---|---|---|---|
@@ -176,8 +216,6 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 | Recon Activity | EventCode 4688 | Execution of `net.exe`, `whoami.exe`, `netstat.exe` | T1087, T1049 |
 
 ---
-
-## Environment Stats
 
 ## 📊 Environment Stats
 
@@ -189,9 +227,10 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 | Brute Force Attempts Flagged | 9,434 |
 | Custom Detection Rules Built | 3 |
 | MITRE Techniques Mapped | 4 |
+
 ---
 
-## Skills Applied
+## 🧠 Skills Applied
 
 - SIEM setup and tuning (Splunk)
 - Multi-source Windows log ingestion
@@ -204,9 +243,10 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 
 ---
 
-## Lab Setup Guide
+## 🚀 Lab Setup Guide
 
 ### Requirements
+
 - Windows 10/11 host machine
 - VirtualBox with Kali Linux VM
 - Splunk Enterprise (Free tier — 500MB/day)
@@ -239,12 +279,12 @@ disabled = false
 
 ```bash
 # Run from Kali Linux
-hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.56.1 smb -t 4 -V
+hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.1.7 smb -t 4 -V
 ```
 
 ---
 
-## References
+## 📚 References
 
 - [Splunk Documentation](https://docs.splunk.com/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
