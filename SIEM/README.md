@@ -130,19 +130,36 @@ After gaining initial access, the attacker executed suspicious PowerShell comman
 
 The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
 
-```powershell
-# Test Case 1: Execution Policy Bypass & Inline Execution
+## 💻 Attack Commands (Simulated Post-Exploitation)
+
+The following PowerShell commands were executed to simulate suspicious post-exploitation activity and validate endpoint telemetry collection.
+
+### Test Case 1: Execution Policy Bypass & Inline Execution
+
+\`\`\`powershell
 powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
+\`\`\`
 
-# Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
+**Purpose:**
+- Simulates execution of PowerShell with policy bypass.
+- Used to test detection of suspicious PowerShell execution behavior.
+
+### Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
+
+\`\`\`powershell
 powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
+\`\`\`
 
-### 🚩 **Suspicious PowerShell Flags Breakdown**
+**Purpose:**
+- Simulates hidden PowerShell execution.
+- Tests detection of stealthy in-memory execution techniques.
 
-| Suspicious Flag | Full Parameter Name | Primary Purpose / Malicious Intent |
-| :--- | :--- | :--- |
-| **`-nop`** | `-NoProfile` | Bypasses user profile loading to avoid security controls. |
-| **`-exec bypass`** | `-ExecutionPolicy Bypass` | Bypasses execution policies to run unsigned scripts. |
-| **`-w hidden`** | `-WindowStyle Hidden` | Hides the PowerShell window from desktop view. |
-| **`-c`** | `-Command` | Executes inline string commands directly. |
-| **`IEX`** | `Invoke-Expression` | Runs dynamically fetched payload strings in memory. |
+### 🚩 Suspicious PowerShell Flags Breakdown
+
+| Suspicious Flag | Full Parameter Name | Purpose / Security Concern |
+|---|---|---|
+| `-nop` | `-NoProfile` | Prevents PowerShell profile loading. Attackers use this to avoid user-specific configurations and security controls. |
+| `-exec bypass` | `-ExecutionPolicy Bypass` | Allows execution of scripts without enforcing PowerShell execution policies. Commonly abused by malware. |
+| `-w hidden` | `-WindowStyle Hidden` | Runs PowerShell without displaying a visible window to the user. |
+| `-c` | `-Command` | Executes commands directly through PowerShell. |
+| `IEX` | `Invoke-Expression` | Executes dynamically generated PowerShell code in memory and is commonly abused for fileless attacks. |
