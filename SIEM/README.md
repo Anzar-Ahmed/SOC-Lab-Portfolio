@@ -136,9 +136,9 @@ The following PowerShell commands were executed to simulate suspicious post-expl
 
 ### Test Case 1: Execution Policy Bypass & Inline Execution
 
-\`\`\`powershell
+```powershell
 powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
-\`\`\`
+```
 
 **Purpose:**
 - Simulates execution of PowerShell with policy bypass.
