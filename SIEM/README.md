@@ -116,7 +116,7 @@ index=main source="WinEventLog:Security" EventCode=4625
 * **Target Focus:** Local account `testuser` was targeted using automated wordlists (`rockyou.txt`).
 * **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
 
-### 💻 Attack Commands (Simulated Post-Exploitation)
+### **💻 Attack Commands (Simulated Post-Exploitation)**
 
 The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
 
@@ -126,25 +126,3 @@ powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
 
 # Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
 powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
-
-
-
-### ⚠️ PowerShell Command Line Flags Analysis
-
-| Flag / Parameter | Full Form / Meaning | Security Impact & Malicious Intent |
-| :--- | :--- | :--- |
-| **`-nop`** | `-NoProfile` | Bypasses user profile loading, preventing custom security scripts/alerts from executing. |
-| **`-exec bypass`** | `-ExecutionPolicy Bypass` | Overrides Windows PowerShell Execution Policy to run unsigned/restricted scripts. |
-| **`-w hidden`** | `-WindowStyle Hidden` | Hides the PowerShell console window from the victim to execute silently in the background. |
-| **`-c`** | `-Command` | Tells PowerShell to execute the inline string command immediately. |
-| **`IEX`** | `Invoke-Expression` | Evaluates and runs dynamically fetched or encoded strings directly in memory (Fileless Payload execution). |
-
----
-
-### 🔍 Splunk Telemetry & Forensic Artifacts Identified
-
-| Splunk Field Name | Log Field Value | Forensics & Investigation Value |
-| :--- | :--- | :--- |
-| **`CommandLine`** | `powershell -nop -exec bypass...` | Captures the full obfuscated command string used by the adversary. |
-| **`ParentImage`** | `C:\Windows\System32\cmd.exe` | Identifies the execution lineage (helps detect process injection or illegitimate parent process). |
-| **`Hashes`** | `MD5=..., SHA256=...` | SHA256/MD5 of the process executable for Threat Intelligence (VT) cross-referencing. |
