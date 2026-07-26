@@ -146,9 +146,9 @@ powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
 
 ### Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
 
-\`\`\`powershell
+```powershell
 powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
-\`\`\`
+```
 
 **Purpose:**
 - Simulates hidden PowerShell execution.
