@@ -117,23 +117,22 @@ index=main source="WinEventLog:Security" EventCode=4625
 * **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
 
 
-🚨 Attack 2: Suspicious PowerShell Execution
-📌 What Happened
+### ⚠️ PowerShell Command Line Flags Analysis
 
-After gaining initial access, the attacker executed suspicious PowerShell commands using multiple bypass techniques. These flags are commonly used by malware and threat actors to evade detection and execute malicious scripts silently.
+| Flag / Parameter | Full Form / Meaning | Security Impact & Malicious Intent |
+| :--- | :--- | :--- |
+| **`-nop`** | `-NoProfile` | Bypasses user profile loading, preventing custom security scripts/alerts from executing. |
+| **`-exec bypass`** | `-ExecutionPolicy Bypass` | Overrides Windows PowerShell Execution Policy to run unsigned/restricted scripts. |
+| **`-w hidden`** | `-WindowStyle Hidden` | Hides the PowerShell console window from the victim to execute silently in the background. |
+| **`-c`** | `-Command` | Tells PowerShell to execute the inline string command immediately. |
+| **`IEX`** | `Invoke-Expression` | Evaluates and runs dynamically fetched or encoded strings directly in memory (Fileless Payload execution). |
 
-💻 Attack Commands (Simulated Post-Exploitation)
-powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
+---
 
-powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
+### 🔍 Splunk Telemetry & Forensic Artifacts Identified
 
-⚠️ Suspicious Flags & Fields Analysis
-| Flag / Field   | Meaning                    | Why It's Malicious / Suspicious                                       |
-| -------------- | -------------------------- | --------------------------------------------------------------------- |
-| `-nop`         | No Profile                 | Skips loading user/system profiles, bypassing security configurations |
-| `-exec bypass` | Bypass Execution Policy    | Allows execution of unsigned or restricted scripts                    |
-| `-w hidden`    | Hidden Window              | Runs PowerShell in a hidden window to evade user visibility           |
-| `IEX`          | Invoke Expression          | Executes dynamically generated or remote code directly in memory      |
-| `--ps2`        | Version/Custom Switch      | Can force specific PowerShell behavior or be used for evasion         |
-| `Hashes`       | File Hashes (SHA256 / MD5) | Used to match binaries with known malicious indicators (Threat Intel) |
-| `ParentImage`  | Parent Process Information | Helps identify suspicious process chains (e.g., Word → PowerShell)    |
+| Splunk Field Name | Log Field Value | Forensics & Investigation Value |
+| :--- | :--- | :--- |
+| **`CommandLine`** | `powershell -nop -exec bypass...` | Captures the full obfuscated command string used by the adversary. |
+| **`ParentImage`** | `C:\Windows\System32\cmd.exe` | Identifies the execution lineage (helps detect process injection or illegitimate parent process). |
+| **`Hashes`** | `MD5=..., SHA256=...` | SHA256/MD5 of the process executable for Threat Intelligence (VT) cross-referencing. |
