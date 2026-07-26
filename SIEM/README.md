@@ -120,9 +120,7 @@ index=main source="WinEventLog:Security" EventCode=4625
 🚨 Attack 2: Suspicious PowerShell Execution
 📌 What Happened
 
-After gaining initial access, the attacker executed suspicious PowerShell commands using multiple bypass techniques. 
-These flags are commonly used by malware and threat actors to evade detection and execute malicious scripts silently.
-
+After gaining initial access, the attacker executed suspicious PowerShell commands using multiple bypass techniques. These flags are commonly used by malware and threat actors to evade detection and execute malicious scripts silently.
 
 💻 Attack Commands (Simulated Post-Exploitation)
 powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
