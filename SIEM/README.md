@@ -184,10 +184,10 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 
 | Metric | Value |
 |---|---|
-| Security Events Ingested | 48,377+ |
-| Sysmon Events Ingested | 3,151+ |
-| Brute Force Attempts Flagged | 19,059 |
-| Process Creation Events | 26 |
+| Security Events Ingested | 29,223+ |
+| Sysmon Events Ingested | *(not shown in these screenshots)* |
+| Brute Force Attempts Flagged | 9,434 |
+| Process Creation Events | *(not shown in these screenshots)* |
 | Custom Detection Rules Built | 3 |
 | MITRE Techniques Mapped | 4 |
 
