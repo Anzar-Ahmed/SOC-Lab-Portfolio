@@ -130,9 +130,6 @@ After gaining initial access, the attacker executed suspicious PowerShell comman
 
 The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
 
-## 💻 Attack Commands (Simulated Post-Exploitation)
-
-The following PowerShell commands were executed to simulate suspicious post-exploitation activity and validate endpoint telemetry collection.
 
 ### Test Case 1: Execution Policy Bypass & Inline Execution
 
@@ -182,15 +179,16 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 
 ## Environment Stats
 
+## 📊 Environment Stats
+
 | Metric | Value |
 |---|---|
-| Security Events Ingested | 29,223+ |
-| Sysmon Events Ingested | *(not shown in these screenshots)* |
+| Security Events Ingested (EventCode 4625) | 29,223+ |
+| Process Creation Events (EventCode 4688) | 287 |
+| Sysmon Events Ingested (PowerShell-related) | 50+ |
 | Brute Force Attempts Flagged | 9,434 |
-| Process Creation Events | *(not shown in these screenshots)* |
 | Custom Detection Rules Built | 3 |
 | MITRE Techniques Mapped | 4 |
-
 ---
 
 ## Skills Applied
