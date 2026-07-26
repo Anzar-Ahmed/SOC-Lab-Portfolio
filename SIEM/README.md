@@ -163,3 +163,96 @@ powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
 | `-w hidden` | `-WindowStyle Hidden` | Runs PowerShell without displaying a visible window to the user. |
 | `-c` | `-Command` | Executes commands directly through PowerShell. |
 | `IEX` | `Invoke-Expression` | Executes dynamically generated PowerShell code in memory and is commonly abused for fileless attacks. |
+
+
+## Attack Chain Overview
+
+**Initial Access → Credential Access → Execution → Discovery**
+---
+
+## Detection Logic
+
+| Rule Name | Event Source | Detection Logic | MITRE ID |
+|---|---|---|---|
+| Brute Force Detection | EventCode 4625 | Failed logins > 10 from same source IP | T1110 |
+| PowerShell Execution | Sysmon | `powershell.exe` invoked with bypass flags | T1059.001 |
+| Recon Activity | EventCode 4688 | Execution of `net.exe`, `whoami.exe`, `netstat.exe` | T1087, T1049 |
+
+---
+
+## Environment Stats
+
+| Metric | Value |
+|---|---|
+| Security Events Ingested | 48,377+ |
+| Sysmon Events Ingested | 3,151+ |
+| Brute Force Attempts Flagged | 19,059 |
+| Process Creation Events | 26 |
+| Custom Detection Rules Built | 3 |
+| MITRE Techniques Mapped | 4 |
+
+---
+
+## Skills Applied
+
+- SIEM setup and tuning (Splunk)
+- Multi-source Windows log ingestion
+- SPL query development
+- Custom correlation/detection rule creation
+- Alert configuration and false-positive tuning
+- Controlled attack simulation and investigation
+- MITRE ATT&CK technique mapping
+- Incident documentation and triage
+
+---
+
+## Lab Setup Guide
+
+### Requirements
+- Windows 10/11 host machine
+- VirtualBox with Kali Linux VM
+- Splunk Enterprise (Free tier — 500MB/day)
+- Sysmon with SwiftOnSecurity configuration
+
+### 1. Install Sysmon
+
+```powershell
+# Pull SwiftOnSecurity config
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml" -OutFile "sysmonconfig-export.xml"
+
+# Install Sysmon with the config applied
+Sysmon64.exe -accepteula -i sysmonconfig-export.xml
+```
+
+### 2. Configure Splunk Inputs
+
+```ini
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+index = main
+disabled = false
+renderXml = false
+
+[WinEventLog://Security]
+index = main
+disabled = false
+```
+
+### 3. Simulate the Attack
+
+```bash
+# Run from Kali Linux
+hydra -l testuser -P /usr/share/wordlists/rockyou.txt 192.168.56.1 smb -t 4 -V
+```
+
+---
+
+## References
+
+- [Splunk Documentation](https://docs.splunk.com/)
+- [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [SwiftOnSecurity Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config)
+- [Sysinternals Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+
+---
+
+**Author:** Anzar Ahmed
