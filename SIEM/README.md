@@ -111,10 +111,22 @@ index=main source="WinEventLog:Security" EventCode=4625
 
 #### 🔑 Key Findings & Triage Analysis
 
-* **High Volume Telemetry:** Ingested **19,059 failed logon events** (`EventCode 4625`) within a short timeframe.
+* **High Volume Telemetry:** Ingested **3107 failed logon events** (`EventCode 4625`) within a short timeframe.
 * **Adversary Identification:** Source IP `192.168.56.102` identified as the origin of the attack.
 * **Target Focus:** Local account `testuser` was targeted using automated wordlists (`rockyou.txt`).
 * **Authentication Failure Reason:** Explicit log status confirmed *"Unknown user name or bad password"*.
+
+### 💻 Attack Commands (Simulated Post-Exploitation)
+
+The following commands were executed to simulate post-exploitation behavior and test endpoint telemetry logging:
+
+```powershell
+# Test Case 1: Execution Policy Bypass & Inline Execution
+powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
+
+# Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
+powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
+
 
 
 ### ⚠️ PowerShell Command Line Flags Analysis
