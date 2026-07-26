@@ -136,3 +136,13 @@ powershell -nop -exec bypass -c "Write-Host 'Simulated Attack'"
 
 # Test Case 2: Stealth In-Memory Execution (Fileless Malware Simulation)
 powershell -nop -exec bypass -w hidden -c "IEX 'Write-Host Malware Simulation'"
+
+### 🚩 **Suspicious PowerShell Flags Breakdown**
+
+| Suspicious Flag | Full Parameter Name | Primary Purpose / Malicious Intent |
+| :--- | :--- | :--- |
+| **`-nop`** | `-NoProfile` | Bypasses user profile loading to avoid security controls. |
+| **`-exec bypass`** | `-ExecutionPolicy Bypass` | Bypasses execution policies to run unsigned scripts. |
+| **`-w hidden`** | `-WindowStyle Hidden` | Hides the PowerShell window from desktop view. |
+| **`-c`** | `-Command` | Executes inline string commands directly. |
+| **`IEX`** | `Invoke-Expression` | Runs dynamically fetched payload strings in memory. |
