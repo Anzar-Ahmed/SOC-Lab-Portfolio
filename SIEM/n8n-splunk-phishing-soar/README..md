@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f7a7a,100:2a9d8f&height=220&section=header&text=Automated%20Phishing%20Email%20Triage%20Pipeline&fontSize=32&fontColor=ffffff&animation=fadeIn"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1e5f8a,50:0e8388,100:2e8b7b&height=220&section=header&text=Automated%20Phishing%20Email%20Triage%20Pipeline&fontSize=32&fontColor=ffffff"/>
 </p>
 
 <p align="center">
