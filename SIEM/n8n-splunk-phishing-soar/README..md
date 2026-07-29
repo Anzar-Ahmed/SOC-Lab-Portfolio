@@ -1,17 +1,16 @@
 # 🔎 SOAR-Lite: Automated Phishing Email Triage Pipeline
-
-<p align="center">
-  <img src="https://img.shields.io/badge/CATEGORY-SOAR%20AUTOMATION%20%7C%20PHISHING%20EMAIL%20TRIAGE-2c7a7b?style=for-the-badge&labelColor=4a5568&color=2c7a7b"/>
-  <img src="https://img.shields.io/badge/STATUS-COMPLETE-00a86b?style=for-the-badge&labelColor=4a5568"/>
-  <img src="https://img.shields.io/badge/FOCUS-IMAP%20EXTRACTION%20%7C%20IOC%20ENRICHMENT-1a202c?style=for-the-badge&labelColor=4a5568"/>
-</p>
-
 ---
 
 ## 🚀 Automated Phishing Email Triage Pipeline
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f7a7a,100:2a9d8f&height=220&section=header&text=Automated%20Phishing%20Email%20Triage%20Pipeline&fontSize=32&fontColor=ffffff&animation=fadeIn"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/CATEGORY-SOAR%20AUTOMATION%20%7C%20PHISHING%20EMAIL%20TRIAGE-2c7a7b?style=for-the-badge&labelColor=4a5568&color=2c7a7b"/>
+  <img src="https://img.shields.io/badge/STATUS-COMPLETE-00a86b?style=for-the-badge&labelColor=4a5568"/>
+  <img src="https://img.shields.io/badge/FOCUS-IMAP%20EXTRACTION%20%7C%20IOC%20ENRICHMENT-1a202c?style=for-the-badge&labelColor=4a5568"/>
 </p>
 
 <p align="center">
