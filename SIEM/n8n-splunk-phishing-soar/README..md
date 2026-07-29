@@ -1,6 +1,4 @@
 #  SOAR-Lite: Automated Phishing Email Triage Pipeline
----
-
 
 
 <p align="center">
