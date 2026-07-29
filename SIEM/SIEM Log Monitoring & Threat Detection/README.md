@@ -27,8 +27,9 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 ## 🏗️ Lab Architecture
 
 <p align="center">
-  <img src="/SOC-Lab-Portfolio/SIEM/SIEM Log Monitoring & Threat Detection/01-Lab-Setup/Architecture.png" alt="Architecture" width="600"/>
+  <img src="SIEM/SIEM Log Monitoring & Threat Detection/01-Lab-Setup/Architecture.png" alt="Architecture" width="600"/>
 </p>
+
 
 
 > **Telemetry Flow:**  
