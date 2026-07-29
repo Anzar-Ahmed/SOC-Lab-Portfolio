@@ -1,7 +1,7 @@
-# 🔎 SOAR-Lite: Automated Phishing Email Triage Pipeline
+#  SOAR-Lite: Automated Phishing Email Triage Pipeline
 ---
 
-## 🚀 Automated Phishing Email Triage Pipeline
+
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f7a7a,100:2a9d8f&height=220&section=header&text=Automated%20Phishing%20Email%20Triage%20Pipeline&fontSize=32&fontColor=ffffff&animation=fadeIn"/>
