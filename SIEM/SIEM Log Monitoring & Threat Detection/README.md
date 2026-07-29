@@ -22,12 +22,9 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 
 ---
 
-
 ## 🏗️ Lab Architecture
 
-<p align="center">
-  <img src="./SIEM/SIEM%20Log%20Monitoring%20%26%20Threat%20Detection/01-Lab-Setup/Architecture.png" alt="Architecture" width="600"/>
-</p>
+![Architecture](./SIEM/SIEM%20Log%20Monitoring%20%26%20Threat%20Detection/01-Lab-Setup/Architecture.png)
 
 > **Telemetry Flow:**  
 > **Kali Linux VM** *(Attacker)* ──`Hydra Attack`──> **Windows 10 VM** *(Victim)* ──`Sysmon & Security Logs`──> **Splunk Universal Forwarder** ──`Port 9997`──> **Ubuntu VM** *(Splunk SIEM)*
