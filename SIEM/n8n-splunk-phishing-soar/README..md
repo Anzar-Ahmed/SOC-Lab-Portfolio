@@ -14,6 +14,8 @@
 <p align="center">
   Part of SOC Automation Lab Portfolio → Email Security Analysis
 </p>
+
+
 An end-to-end Security Orchestration, Automation, and Response (SOAR) workflow that automatically ingests reported phishing emails, extracts indicators of compromise (IOCs), enriches them against multiple threat intelligence sources, renders a verdict, and logs the result to Splunk for SOC visibility.
 
 Built with **n8n** as a lightweight, self-hosted SOAR alternative — demonstrating that core SOC automation concepts (ingestion, enrichment, correlation, decision logic, case logging) can be implemented without an enterprise SOAR license.
