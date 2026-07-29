@@ -14,36 +14,9 @@ This is a companion project to my [Splunk SOC Brute-Force Detection Lab](#), ext
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
-```
-               [ Reported Email (IMAP) ]
-                        │
-                        ▼
-         [ Extract IOCs (Code node) ]
-   sender, reply-to, URLs, attachment SHA-256,
-            SPF / DKIM / DMARC results
-                        │
-        ┌───────────────┼───────────────┬───────────────┐
-        ▼               ▼               ▼               ▼
-   AbuseIPDB        VirusTotal       URLScan.io       File Hash
-  (IP reputation)   (URL scan)     (URL behavior)    (VT lookup)
-        │               │               │               │
-        └───────────────┴───────────────┴───────────────┘
-                        ▼
-             [ Merge + Correlate Results ]
-                        ▼
-             [ Verdict Logic (Code node) ]
-                  isMalicious: true/false
-                        │
-          ┌─────────────┴─────────────┐
-          ▼                           ▼
-  [ Log to Splunk HEC ]      [ Log to Splunk HEC ]
-   ✅ Implemented              ✅ Implemented
-          │
-          └──► [ Auto-containment / IP blocklist push ]
-                🔜 Planned — see Roadmap
-```
+![Phishing SOAR Architecture](assets/architecture.png)
 
 **Everything above the dashed line is built and verified against real test emails (see Screenshots below). Containment/response actions are designed but not yet implemented — tracked in the Roadmap section.**
 
