@@ -16,375 +16,232 @@
 </p>
 
 
-An end-to-end Security Orchestration, Automation, and Response (SOAR) workflow that automatically ingests reported phishing emails, extracts indicators of compromise (IOCs), enriches them against multiple threat intelligence sources, renders a verdict, and logs the result to Splunk for SOC visibility.
+# 📌 SOAR-Lite: Phishing Email Triage Automation
 
+An end-to-end **Security Orchestration, Automation, and Response (SOAR)** workflow that automatically ingests reported phishing emails, extracts indicators of compromise (IOCs), enriches them using multiple threat intelligence sources, renders a verdict, and logs results to Splunk for SOC visibility.
 
-
-Built with **n8n** as a lightweight, self-hosted SOAR alternative — demonstrating that core SOC automation concepts (ingestion, enrichment, correlation, decision logic, case logging) can be implemented without an enterprise SOAR license.
-
-
+Built using **n8n** as a lightweight, self-hosted SOAR alternative — demonstrating that core SOC automation concepts (ingestion, enrichment, correlation, decision logic, and case logging) can be implemented without an enterprise SOAR license.
 
 ---
 
+## 🎯 Why This Project
 
+Manual phishing triage is one of the most repetitive and high-volume tasks handled by Tier 1 SOC analysts. This project automates the **first-pass triage process** — specifically IOC extraction and multi-source enrichment — allowing analysts to focus on decision-making instead of manual lookups.
 
-## Why this project
+This project complements my **Splunk SOC Brute-Force Detection Lab**, extending my portfolio from:
 
-
-
-Manual phishing triage is one of the highest-volume, most repetitive tasks a Tier 1 SOC analyst handles daily. This project automates the first-pass triage — IOC extraction and multi-source enrichment — so an analyst's time is spent on judgment calls, not copy-pasting URLs into VirusTotal one at a time.
-
-
-
-This is a companion project to my [Splunk SOC Brute-Force Detection Lab](#), extending my portfolio from **detection** (Splunk SPL, correlation searches) into **automation and response** (SOAR workflow design, API-driven enrichment, orchestrated decision-making).
-
-
+* 🔍 **Detection Engineering** (Splunk SPL, correlation searches)
+  to
+* ⚙️ **Automation & Response** (SOAR workflows, API integrations, decision logic)
 
 ---
-
-
 
 ## 🏗️ Architecture
 
-
-
 ![Phishing SOAR Architecture](assets/architecture.png)
 
-
-
-**Everything above the dashed line is built and verified against real test emails (see Screenshots below). Containment/response actions are designed but not yet implemented — tracked in the Roadmap section.**
-
-
+> Everything above the dashed line is fully implemented and tested with real phishing samples.
+> Containment actions are planned and listed in the roadmap.
 
 ---
 
+## ⚙️ Pipeline Stages
 
+### 1. 📥 Email Ingestion
 
-## Pipeline Stages
+* IMAP trigger monitors a dedicated **"report-phishing" mailbox**
+* Fetches new/unseen emails
+* Supports attachment downloads for hash analysis
 
+---
 
+### 2. 🔍 IOC Extraction
 
-### 1. Email Ingestion
+A JavaScript node parses raw email data into structured fields:
 
-- IMAP trigger node polls a dedicated "report-phishing" mailbox for new (unseen) messages
+* Sender email and display name
+* `Reply-To` mismatch detection (spoofing indicator)
+* Extracted URLs (deduplicated)
+* Attachment SHA-256 hashes
+* SPF, DKIM, DMARC results
+* Sender IP from email headers
 
-- Supports attachment download for hash-based analysis
+---
 
+### 3. 🌐 Multi-Source Enrichment (Parallel Execution)
 
+| Source                 | Purpose               | Signal                     |
+| ---------------------- | --------------------- | -------------------------- |
+| AbuseIPDB              | IP reputation         | Abuse confidence score     |
+| VirusTotal (URL)       | URL scan results      | Malicious engine count     |
+| URLScan.io             | URL behavior analysis | Verdict (malicious/benign) |
+| VirusTotal (File Hash) | Attachment lookup     | Known malware match        |
 
-### 2. IOC Extraction
+* All APIs run **in parallel**
+* Results are merged after completion
 
-A JavaScript code node parses the raw email into structured fields:
+---
 
-- Sender address, display name, and `Reply-To` (common spoofing signal when it differs from the sender)
+### 4. 🧠 Verdict Logic
 
-- All embedded URLs (deduplicated)
-
-- SHA-256 hash of any attachments
-
-- SPF, DKIM, and DMARC authentication results
-
-- Sender IP (extracted from `Received`/`Received-SPF` headers)
-
-
-
-### 3. Multi-Source Enrichment (parallel branches)
-
-| Source | What it checks | Signal used |
-
-|---|---|---|
-
-| **AbuseIPDB** | Sender IP reputation | Abuse confidence score |
-
-| **VirusTotal (URL)** | Submitted URL scan | Malicious engine detection count |
-
-| **URLScan.io** | Live URL behavior/screenshot scan | Overall verdict (malicious/benign) |
-
-| **VirusTotal (File Hash)** | Attachment hash lookup | Known-malware match |
-
-
-
-Each API call runs independently and results are combined with a Merge node once all branches complete.
-
-
-
-### 4. Verdict Logic
-
-A correlation function applies a simple, tunable threshold model:
+A simple, tunable correlation model:
 
 ```
-
 IF VirusTotal malicious_count > 0
-
-   OR URLScan overall verdict == malicious
-
-   OR AbuseIPDB confidence score > 20
-
+   OR URLScan verdict == malicious
+   OR AbuseIPDB score > 20
 THEN verdict = "Phishing"
-
 ELSE verdict = "Benign"
-
 ```
 
+---
 
+### 5. 📊 Case Logging (Splunk)
 
-### 5. Case Logging (Splunk)
+* Final verdict and all IOCs are sent to **Splunk via HTTP Event Collector (HEC)**
+* Enables:
 
-Final verdict and all threat indicators are pushed to Splunk via the **HTTP Event Collector (HEC)**, making every triaged email searchable, dashboard-able, and available for trend analysis (e.g. top targeted users, most abused sender IPs, detection rate over time).
+  * Searchable events
+  * Dashboards
+  * Trend analysis
 
+Examples:
 
+* Top targeted users
+* Most abused IPs
+* Detection rates over time
 
 ---
 
+## 🧰 Tech Stack
 
-
-## Tech Stack
-
-
-
-- **n8n** — workflow orchestration / SOAR engine
-
-- **IMAP** — email ingestion
-
-- **AbuseIPDB API** — IP reputation
-
-- **VirusTotal API v3** — URL and file hash reputation
-
-- **URLScan.io API** — URL sandbox/behavioral scanning
-
-- **Splunk HEC** — centralized event logging and dashboarding
-
-
+* **n8n** — SOAR orchestration
+* **IMAP** — Email ingestion
+* **AbuseIPDB API** — IP intelligence
+* **VirusTotal API v3** — URL & file reputation
+* **URLScan.io API** — Behavioral scanning
+* **Splunk HEC** — Logging & visualization
 
 ---
 
-
-
-## Sample Output (Splunk event)
-
-
-
-Each triaged email lands in Splunk as a single JSON event via HEC, with the full extracted IOC set nested under `emailData` alongside the correlated verdict fields:
-
-
+## 📄 Sample Splunk Event
 
 ```json
-
 {
-
   "abuseScore": 0,
-
   "emailData": {
-
     "email_from_address": "support@paypa1-secure.com",
-
     "email_subject": "Your account has been suspended",
-
     "urls_found": ["http://paypa1-secure.com/verify"],
-
     "url_count": 1,
-
     "attachment_count": 1,
-
     "attachments": [
-
-      { "filename": "invoice.pdf", "mimeType": "application/pdf", "sha256": "e039e3ac0c70a40509c7a2ef739479d182773ffdccdf31ed01258ad26bb65dd2" }
-
+      {
+        "filename": "invoice.pdf",
+        "mimeType": "application/pdf",
+        "sha256": "e039e3ac0c70a40509c7a2ef739479d182773ffdccdf31ed01258ad26bb65dd2"
+      }
     ],
-
     "spf_result": "fail",
-
     "dkim_result": "fail",
-
     "dmarc_result": "fail",
-
     "sender_ip": "203.0.113.45",
-
-    "reply_to": "not_set",
-
-    "message_id": "..."
-
+    "reply_to": "not_set"
   },
-
   "isMalicious": true,
-
   "vtMalicious": 9,
-
   "urlscanMalicious": false
-
 }
-
 ```
 
-
-
-Indexed with `host=127.0.0.1:8088`, `source=http:n8n_soar_token`, `sourcetype=httpevent` — every field above (including nested `emailData.*` fields) is automatically extracted by Splunk and searchable, e.g.:
+### Example Splunk Query
 
 ```
-
 sourcetype=httpevent isMalicious=true
-
 | stats count by emailData.sender_ip
-
 ```
 
+---
 
+## 📸 Screenshots
+
+### n8n Workflow
+
+![Workflow](screenshots/n8n-workflow-canvas.png)
+
+### Splunk Verdict Event
+
+![Splunk Event](screenshots/splunk-verdict-event.png)
+
+### Attachment Hash Field
+
+![Hash Field](screenshots/splunk-attachment-hash.png)
+
+### Field-Level Breakdown
+
+![Field Breakdown](screenshots/splunk-ismalicious-field.png)
 
 ---
 
+## 🧠 Key Design Decisions
 
-
-## Screenshots
-
-
-
-### n8n — Full Workflow Canvas
-
-![n8n SOAR-Lite workflow](screenshots/n8n-workflow-canvas.png)
-
-End-to-end pipeline: IMAP trigger → IOC extraction → four parallel enrichment branches (AbuseIPDB, VirusTotal URL, URLScan.io, VirusTotal file hash via Crypto + Filter) → merge → verdict logic → Splunk HEC.
-
-
-
-### Splunk — Correlated Verdict Event
-
-![Splunk verdict event](screenshots/splunk-verdict-event.png)
-
-A fully enriched and correlated phishing verdict landing in Splunk — `isMalicious`, `vtMalicious`, `abuseScore`, and `urlscanMalicious` all computed by the n8n pipeline and logged in a single event.
-
-
-
-### Splunk — Attachment Hash Extraction
-
-![Attachment SHA-256 field](screenshots/splunk-attachment-hash.png)
-
-Attachment SHA-256 automatically extracted and indexed as a searchable field — enables hash-based threat hunting across historical events.
-
-
-
-### Splunk — Field-Level Drill-Down
-
-![isMalicious field breakdown](screenshots/splunk-ismalicious-field.png)
-
-Splunk's automatic field extraction surfaces every nested `emailData.*` IOC as its own searchable field, alongside the top-level verdict fields.
-
-
-
-> Screenshots are saved under `/screenshots` in this repo.
-
-
+* **Parallel enrichment** → faster triage
+* **Defensive header parsing** → avoids pipeline breakage
+* **SIEM-agnostic logging** → flexible integration
 
 ---
 
+## 🚀 Setup Guide
 
-
-## Key Design Decisions
-
-
-
-- **Parallel enrichment over sequential** — reduces total triage time; each API is independent and doesn't block the others
-
-- **Header-format defensive parsing** — n8n's IMAP node can surface headers under different keys depending on version (`headers` object vs `headerLines` array); the extraction code checks both so the pipeline doesn't silently break on header parsing
-
-- **SIEM-agnostic logging via HEC** — using Splunk's HTTP Event Collector keeps the SOAR layer decoupled from the SIEM; the same event payload could be redirected to any HEC-compatible backend
-
-
-
----
-
-
-
-## Setup
-
-
-
-1. Import `SOAR-Lite-Phase1-3.json` into n8n
+1. Import workflow into n8n
 
 2. Configure credentials:
 
-   - IMAP account (mailbox to monitor)
+   * IMAP mailbox
+   * API keys (AbuseIPDB, VirusTotal, URLScan)
+   * Splunk HEC token
 
-   - AbuseIPDB, VirusTotal, and URLScan.io API keys (stored in n8n Credentials — **never hardcoded in the workflow file**)
+3. Enable workflow
 
-   - Splunk HEC token and endpoint
+4. Send test phishing email
 
-3. Enable the workflow and send a test phishing sample (e.g. from a public phishing corpus) to the monitored mailbox
+5. Verify in Splunk:
 
-4. Verify the event lands in Splunk:
+```
+sourcetype=httpevent source="http:n8n_soar_token"
+```
 
-   ```
-
-   sourcetype=httpevent source="http:n8n_soar_token"
-
-   ```
-
-   > Tip: assigning a dedicated index (e.g. `phishing_soar`) and custom sourcetype (e.g. `phishing:verdict`) at the HEC token level makes long-term searching and dashboarding cleaner than the shared `httpevent` default — worth doing once the pipeline is stable.
-
-
-
-> **Note:** The exported workflow JSON in this repo has all credentials stripped and replaced with placeholders. You must supply your own API keys via n8n's Credentials manager before running it.
-
-
+💡 Tip: Use a custom index like `phishing_soar` for cleaner dashboards.
 
 ---
 
+## 🧬 MITRE ATT&CK Mapping
 
-
-## MITRE ATT&CK Mapping
-
-
-
-| Technique | ID | Relevance |
-
-|---|---|---|
-
-| Phishing | T1566 | Primary threat this pipeline detects |
-
-| Phishing via Spearphishing Link | T1566.002 | URL-based payloads flagged by VT/URLScan |
-
-| Spoofing | T1656 | Detected via Reply-To mismatch and SPF/DKIM/DMARC failures |
-
-
+| Technique          | ID        | Description                   |
+| ------------------ | --------- | ----------------------------- |
+| Phishing           | T1566     | Primary attack vector         |
+| Spearphishing Link | T1566.002 | Malicious URLs                |
+| Spoofing           | T1656     | Header manipulation detection |
 
 ---
 
+## 🛣️ Roadmap
 
-
-## Roadmap
-
-
-
-- [ ] **Auto-containment on confirmed phishing** — push sender IP to a Splunk lookup table / blocklist and send a SOC alert when `isMalicious == true` (currently the pipeline logs the verdict but takes no containment action)
-
-- [ ] Multi-URL enrichment (currently checks the first URL found per email; batch processing would cover all)
-
-- [ ] Auto-quarantine action for confirmed phishing (Gmail API delete/label)
-
-- [ ] Slack/Teams alert on high-confidence verdicts
-
-- [ ] Retry/poll logic for VT and URLScan when analysis is still queued past the wait window
-
-- [ ] Analyst feedback loop to reduce false positives over time
-
-- [ ] Expand test coverage beyond the two verified scenarios (benign vs. malicious) to include mixed-signal and edge cases
-
-
+* [ ] Auto-containment (block IPs / alerts)
+* [ ] Multi-URL support
+* [ ] Email quarantine (Gmail API)
+* [ ] Slack/Teams alerts
+* [ ] API retry logic
+* [ ] Analyst feedback loop
+* [ ] Expanded test scenarios
 
 ---
 
-
-
-## Author
-
-
+## 👨‍💻 Author
 
 **Anzar Ahmed**
+Cybersecurity Student — MUET Jamshoro
+Aspiring SOC Analyst
 
-Cybersecurity student, Mehran University of Engineering and Technology (MUET)
-
-Aspiring SOC Analyst | Building hands-on SOC automation & detection projects
-
-
-
-[GitHub](#) • [LinkedIn](#)
-🔗 GitHub • LinkedIn
+🔗 GitHub: #
+🔗 LinkedIn: #
