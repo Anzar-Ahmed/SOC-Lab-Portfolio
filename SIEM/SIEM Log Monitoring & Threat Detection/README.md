@@ -22,7 +22,8 @@ Through custom **SPL (Search Processing Language)** queries, I engineered target
 
 ---
 
-## 🏗️ Lab Architecture
+
+
 ## 🏗️ Lab Architecture
 
 <p align="center">
