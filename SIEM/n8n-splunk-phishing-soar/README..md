@@ -1,16 +1,21 @@
-# SOAR-Lite: Automated Phishing Email Triage Pipeline
+# 🔎 SOAR-Lite: Automated Phishing Email Triage Pipeline
+
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:111111,50:ff6900,100:e20074&height=180&section=header&text=YOUR%20TITLE%20HERE&fontSize=22&fontColor=ffffff" width="100%" />
+  <img src="https://img.shields.io/badge/Category-SOAR%20Automation%20%7C%20Phishing%20Email%20Triage-1f7a7a?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Status-Complete-2ecc71?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Focus-IMAP%20Extraction%20%7C%20IOC%20Enrichment-2c3e50?style=for-the-badge"/>
+</p>
+
+---
+
+## 🚀 Automated Phishing Email Triage Pipeline
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f7a7a,100:2a9d8f&height=200&section=header&text=Automated%20Phishing%20Email%20Triage%20Pipeline&fontSize=30&fontColor=ffffff"/>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Category-Security%20%7C%20Analysis-ff6900?style=for-the-badge&logo=splunk&logoColor=white">
-  <img src="https://img.shields.io/badge/Status-Complete-success?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Focus-Threat%20Detection-111111?style=for-the-badge&logo=target&logoColor=ff6900">
-</p>
-
-<p align="center">
-  <b>Part of Your Portfolio Title → Subcategory</b>
+  Part of SOC Automation Lab Portfolio → Email Security Analysis
 </p>
 
 An end-to-end Security Orchestration, Automation, and Response (SOAR) workflow that automatically ingests reported phishing emails, extracts indicators of compromise (IOCs), enriches them against multiple threat intelligence sources, renders a verdict, and logs the result to Splunk for SOC visibility.
