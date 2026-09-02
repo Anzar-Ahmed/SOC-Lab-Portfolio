@@ -165,13 +165,9 @@ sourcetype=httpevent isMalicious=true
 
 ## 📸 Screenshots
 
-### n8n Workflow
 
-![Workflow](screenshots/n8n-workflow-canvas.png)
-
-### Splunk Verdict Event
-
-![Splunk Verdict Event](screenshots/splunk_ismalicious_verdict.png)
+#### 2. Splunk Correlated Verdict Event
+![Splunk Verdict Event](screenshots/Splunk_ismalicious_verdict.png)
 
 ### Attachment Hash Field
 
