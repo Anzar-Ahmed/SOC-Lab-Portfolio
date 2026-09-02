@@ -38,7 +38,7 @@ This project complements my **Splunk SOC Brute-Force Detection Lab**, extending 
 
 ## 🏗️ Architecture
 
-![Phishing SOAR Architecture](assets/architecture.png)
+![n8n Workflow Canvas](screenshots/n8n_workflow_canvas.png)
 
 > Everything above the dashed line is fully implemented and tested with real phishing samples.
 > Containment actions are planned and listed in the roadmap.
@@ -171,15 +171,19 @@ sourcetype=httpevent isMalicious=true
 
 ### Splunk Verdict Event
 
-![Splunk Event](screenshots/splunk-verdict-event.png)
+![Splunk Verdict Event](screenshots/splunk_ismalicious_verdict.png)
 
 ### Attachment Hash Field
 
-![Hash Field](screenshots/splunk-attachment-hash.png)
+![Splunk Attachment Hash](screenshots/splunk_attachment_hash.png)
 
 ### Field-Level Breakdown
 
-![Field Breakdown](screenshots/splunk-ismalicious-field.png)
+![Splunk URLScan Verdict](screenshots/splunk_urlscan_verdict.png)
+
+
+#### 5. Splunk Search Query View
+![Splunk Search Query](screenshots/splunk_search_query.png)
 
 ---
 
