@@ -177,14 +177,12 @@ sourcetype=httpevent isMalicious=true
 
 ![Splunk Attachment Hash](screenshots/splunk_attachment_hash.png)
 
-### Field-Level Breakdown
-
-![Splunk URLScan Verdict](screenshots/splunk_urlscan_verdict.png)
+#### 4. Splunk URLScan Verdict
+![Splunk URLScan Verdict](screenshots/Splunk_urlscan_verdict.png)
 
 
 #### 5. Splunk Search Query View
-![Splunk Search Query](screenshots/splunk_search_query.png)
-
+![Splunk Search Query](screenshots/Splunk_search_query.png)
 ---
 
 ## 🧠 Key Design Decisions
